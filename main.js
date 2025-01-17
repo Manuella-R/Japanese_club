@@ -76,14 +76,14 @@ function openLightbox(imageId) {
   // Update the source of the lightbox image based on the clicked image
   lightboxImg.src = document.getElementById(imageId).src;
 
-  // Show the lightbox
-  lightbox.style.display = "flex";
+   // Show the lightbox
+  lightbox.classList.add("show");
 }
 
 // Function to close the lightbox
 function closeLightbox() {
   var lightbox = document.getElementById("lightbox");
 
-  // Hide the lightbox
-  lightbox.style.display = "none";
+ // Hide the lightbox
+  lightbox.classList.remove("show");
 }
