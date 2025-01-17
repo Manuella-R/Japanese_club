@@ -73,8 +73,8 @@ function openLightbox(imageId) {
   var lightbox = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightbox-img");
 
-  // Update the source of the lightbox image based on the clicked image
-  lightboxImg.src = document.getElementById(imageId).src;
+   // Update the source of the lightbox image based on the clicked image
+  lightboxImg.src = imageSrc;
 
    // Show the lightbox
   lightbox.classList.add("show");
