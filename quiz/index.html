@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chronicles of the Eternal Rain</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Images Container -->
+    <div id="background-container" class="background-container">
+        <div class="background-slide active" style="background-image: url('background/homepage.jpeg');"></div>
+        <div class="background-slide" style="background-image: url('background/tarven.jpeg');"></div>
+        <div class="background-slide" style="background-image: url('background/forest.jpeg');"></div>
+        <div class="background-slide" style="background-image: url('background/Dungeons.jpeg');"></div>
+        <div class="background-slide" style="background-image: url('background/night.jpeg');"></div>
+    </div>
+    
+    <!-- Splash Screen / Intro -->
+    <div id="intro-screen" class="screen active">
+        <div class="rain-container"></div>
+        <div class="intro-content">
+            <h1 class="title">The Chronicles of the Eternal Rain</h1>
+            <h2 class="subtitle">A Personality Alignment Test</h2>
+            <div class="story">
+                <p>The Kingdom of Aethelgard has been drenched in gray skies for weeks. The roads are muddy, and the taverns are full of travelers waiting for the weather to break.</p>
+                <p>You are one of these travelers.</p>
+                <p>You have just stepped into the "Drifting Cloud Guild Hall" on the edge of the frontier. You are looking for a party to travel with—a group that fits your style. But out here, survival isn't just about how hard you hit; it's about how you think, how you act when the campfire goes out, and who you are when the world gets quiet.</p>
+                <p>The Guild Master slides a piece of parchment across the worn wooden table. He doesn't look up from his ledger.</p>
+                <p class="quote">"We don't just let anyone sign up," he mutters. "I need to know if you're going to lead the charge or watch from the shadows. I need to know your rhythm."</p>
+                <p>He taps the paper. <span class="quote">"Answer these. Don't think too hard. Just tell me what you'd do."</span></p>
+            </div>
+            <button id="start-btn" class="btn-primary">Pick Up The Quill</button>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen">
+        <div class="rain-container"></div>
+        <div class="quiz-container">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div id="bridge-text" class="bridge-text"></div>
+            <div class="question-container">
+                <h2 id="question-number" class="question-number"></h2>
+                <h3 id="question-text" class="question-text"></h3>
+                <div id="answers" class="answers"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+        <div class="rain-container"></div>
+        <div class="results-container">
+            <div class="result-card">
+                <h1 id="result-title" class="result-title"></h1>
+                <p id="result-description" class="result-description"></p>
+                <div class="compatibility">
+                    <div class="compat-item">
+                        <span class="compat-label">Compatible:</span>
+                        <span id="compatible" class="compat-value"></span>
+                    </div>
+                    <div class="compat-item">
+                        <span class="compat-label">Incompatible:</span>
+                        <span id="incompatible" class="compat-value"></span>
+                    </div>
+                </div>
+                <div class="recommendations">
+                    <h3>Anime Recommendations:</h3>
+                    <ul id="recs-list" class="recs-list"></ul>
+                </div>
+                <button id="restart-btn" class="btn-primary">Take The Test Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
