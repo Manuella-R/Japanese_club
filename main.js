@@ -3,18 +3,101 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabBtns = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
   
-  tabBtns.forEach(btn => {
+  function switchTab(targetTab) {
+    // Remove active class from all buttons and contents
+    tabBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+      b.setAttribute('tabindex', '-1');
+    });
+    tabContents.forEach(content => {
+      content.classList.remove('active');
+    });
+    
+    // Find and activate the target button
+    const targetBtn = document.querySelector(`[data-tab="${targetTab}"]`);
+    if (targetBtn) {
+      targetBtn.classList.add('active');
+      targetBtn.setAttribute('aria-selected', 'true');
+      targetBtn.setAttribute('tabindex', '0');
+    }
+    
+    // Activate the target content
+    const targetContent = document.getElementById(`tab-${targetTab}`);
+    if (targetContent) {
+      targetContent.classList.add('active');
+    }
+    
+    // Smooth scroll to the journey section when switching tabs (only if not in view)
+    const journeySection = document.getElementById('journey-section');
+    if (journeySection) {
+      const rect = journeySection.getBoundingClientRect();
+      const isInView = rect.top >= 0 && rect.top <= window.innerHeight * 0.5;
+      
+      if (!isInView) {
+        setTimeout(() => {
+          journeySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+    
+    // Re-trigger stat animations for 2025 tab
+    if (targetTab === '2025' && targetContent) {
+      const statsContainer = targetContent.querySelector('.stats-container');
+      if (statsContainer) {
+        const statNumbers = statsContainer.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+          const target = parseInt(stat.getAttribute('data-target'));
+          stat.textContent = '0';
+          // Trigger animation after a short delay
+          setTimeout(() => {
+            animateCounter(stat);
+          }, 300);
+        });
+      }
+    }
+  }
+  
+  // Add click listeners to tab buttons
+  tabBtns.forEach((btn, index) => {
+    // Add ARIA attributes
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', btn.classList.contains('active') ? 'true' : 'false');
+    
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
-      
-      // Remove active class from all buttons and contents
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabContents.forEach(content => content.classList.remove('active'));
-      
-      // Add active class to clicked button and corresponding content
-      btn.classList.add('active');
-      document.getElementById(`tab-${targetTab}`).classList.add('active');
+      switchTab(targetTab);
     });
+    
+    // Add keyboard navigation
+    btn.addEventListener('keydown', (e) => {
+      let newIndex = index;
+      
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        newIndex = index > 0 ? index - 1 : tabBtns.length - 1;
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        newIndex = index < tabBtns.length - 1 ? index + 1 : 0;
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        newIndex = 0;
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        newIndex = tabBtns.length - 1;
+      } else {
+        return;
+      }
+      
+      tabBtns[newIndex].focus();
+      const targetTab = tabBtns[newIndex].getAttribute('data-tab');
+      switchTab(targetTab);
+    });
+  });
+  
+  // Add ARIA attributes to tab contents
+  tabContents.forEach(content => {
+    content.setAttribute('role', 'tabpanel');
   });
 });
 
@@ -299,19 +382,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Highlight active section in navigation
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav__links a');
+const navSections = document.querySelectorAll('section[id]');
+const navLinksHighlight = document.querySelectorAll('.nav__links a');
 
 function highlightNav() {
   let scrollPosition = window.scrollY + 100;
   
-  sections.forEach(section => {
+  navSections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
     const sectionId = section.getAttribute('id');
     
     if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      navLinks.forEach(link => {
+      navLinksHighlight.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${sectionId}`) {
           link.classList.add('active');

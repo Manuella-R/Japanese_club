@@ -1067,19 +1067,66 @@ nav.scrolled {
   animation: pulse 0.5s ease;
 }
 
-/* Month section enhancements */
+/* Month section enhancements - 2024 Section */
 .month-section {
+  margin-bottom: 2.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 2px solid rgba(243, 234, 229, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 1.5rem;
-  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .month-section:hover {
   transform: translateX(10px);
-  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-color);
+}
+
+.month-section h3 {
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 3px solid var(--primary-color);
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.month-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.month-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+  margin: 2rem 0;
+  position: relative;
+}
+
+.month-divider::after {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 0 10px;
+  color: var(--text-dark);
+  font-size: 1.2rem;
 }
 
 .month-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  flex-shrink: 0;
   transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
   border-radius: 1rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -1090,6 +1137,12 @@ nav.scrolled {
   transform: scale(1.05) rotate(2deg);
   filter: brightness(1.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.month-section p {
+  flex: 1;
+  line-height: 1.8;
+  color: var(--text-dark);
 }
 
 /* Add gradient overlay to images */
@@ -1785,13 +1838,22 @@ img {
   .month-content {
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
   }
   
   .month-image {
-    width: 100%;
+    width: 100% !important;
     max-width: 300px;
-    height: auto;
+    height: auto !important;
     margin-bottom: 1rem;
+  }
+  
+  .month-section {
+    padding: 1.5rem;
+  }
+  
+  .month-section h3 {
+    font-size: 1.4rem;
   }
   
   #what-we-did > h2,
@@ -2373,6 +2435,26 @@ img {
   }
 }
 
+/* Journey Section Styling */
+.section-journey {
+  background: linear-gradient(135deg, rgba(243, 234, 229, 0.15) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border-radius: 2rem;
+  padding: 4rem 2rem !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-journey::before {
+  content: '🎌';
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 5rem;
+  opacity: 0.05;
+  animation: rotate 30s linear infinite;
+}
+
 /* Tab Navigation Styles */
 .tab-navigation {
   display: flex;
@@ -2408,13 +2490,30 @@ img {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
+.tab-btn:focus {
+  outline: none;
+}
+
+.tab-btn:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
 .tab-content {
   display: none;
   animation: fadeInTab 0.5s ease;
+  padding: 2rem 0;
 }
 
 .tab-content.active {
   display: block;
+}
+
+/* Additional padding for tab content on mobile */
+@media (max-width: 768px) {
+  .tab-content {
+    padding: 1rem 0;
+  }
 }
 
 @keyframes fadeInTab {
