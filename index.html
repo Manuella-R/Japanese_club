@@ -143,22 +143,51 @@
 
     .month-section {
         margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        border: 1px solid rgba(243, 234, 229, 0.3);
     }
 
     .month-content {
         display: flex;
         align-items: center;
+        gap: 20px;
     }
 
     .month-image {
-        width: 150px;
-        height: 150px;
-        margin-right: 20px;
+        width: 200px;
+        height: 200px;
+        margin-right: 0;
+        object-fit: cover;
+    }
+    
+    .month-section h3 {
+        color: var(--text-dark);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-bottom: 3px solid var(--primary-color);
+        display: inline-block;
+        padding-bottom: 5px;
     }
 
     .month-divider {
-        border: 1px solid #ccc;
+        border: none;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--primary-color), transparent);
         margin: 20px 0;
+        position: relative;
+    }
+    
+    .month-divider::after {
+        content: '✦';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 0 10px;
+        color: var(--text-dark);
     }
 
     h3 {
@@ -291,7 +320,25 @@
 Every year, a unique event takes place in Japan called the "Crying Sumo" contest. The goal is for sumo wrestlers to make babies cry. The tradition is believed to bring good health and good fortune to the babies. 🍼💪</p>
   </section>
 
-  
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+
+  <!-- Footer with Cycling Quotes -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="quote-container">
+        <h3>Japanese Wisdom</h3>
+        <p id="quote-text" class="quote-text"></p>
+        <p id="quote-translation" class="quote-translation"></p>
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2024 Japanese Club at Strathmore University. All rights reserved.</p>
+        <p>日本文化を愛する全ての人へ (To all who love Japanese culture)</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="main.js"></script>
