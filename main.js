@@ -1,9 +1,11 @@
 // Loading Screen
 window.addEventListener('load', () => {
   const loadingScreen = document.querySelector('.loading-screen');
-  setTimeout(() => {
-    loadingScreen.classList.add('hidden');
-  }, 5000); // Hide after 5 seconds
+  if (loadingScreen) {
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+    }, 2000); // Hide after 2 seconds
+  }
 });
 
 // Mobile Menu Toggle
