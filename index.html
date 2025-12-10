@@ -45,8 +45,7 @@
     <ul class="nav__links" id="nav-links">
       <li><a href="#home">HOME</a></li>
       <li><a href="#about">ABOUT US</a></li>
-      <li><a href="#2025-section">2025 JOURNEY</a></li>
-      <li><a href="#what-we-did">2024 HIGHLIGHTS</a></li>
+      <li><a href="#journey-section">OUR JOURNEY</a></li>
       <li><a href="#gallery">GALLERY</a></li>
       <li><a href="#trivia">TRIVIA</a></li>
     </ul>
@@ -99,9 +98,20 @@
       Whether you're a devoted anime fan, a curious language learner, or someone intrigued by Japan’s rich culture, the Japanese Club at Strathmore has something for you. Join us to connect, learn, and celebrate everything Japanese!</p>
   </section>
 
-<!-- 2025 Section -->
-  <section id="2025-section" class="section section-2025">
-    <h2>🎌 2025 Journey - Our Ongoing Adventure</h2>
+  <!-- Journey Tabs Section -->
+  <section id="journey-section" class="section section-journey">
+    <h2>🎌 Our Journey</h2>
+    <p class="section-intro">Explore our adventures through the years!</p>
+    
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+      <button class="tab-btn active" data-tab="2025">2025 Journey</button>
+      <button class="tab-btn" data-tab="2024">2024 Highlights</button>
+    </div>
+    
+    <!-- 2025 Tab Content -->
+    <div class="tab-content active" id="tab-2025">
+    <h3 class="tab-title">🎌 2025 Journey - Our Ongoing Adventure</h3>
     <p class="section-intro">Welcome to 2025! This year brings new challenges and exciting opportunities as we continue to grow and share Japanese culture with the Strathmore community.</p>
     
     <!-- Stats Cards -->
@@ -306,12 +316,10 @@
 </style>
 
 
-  
-
-<!-- What We Did This Year Section -->
-  <section id="what-we-did" class="section">
-    <h2>2024 Highlights</h2>
-    <p>2024 has been one for the books! We organized exciting new activities, eco-friendly camping initiatives, and hosted various community-building events. Thank you to all who joined us in making these moments unforgettable!</p>
+    </div>
+    
+    <!-- 2024 Tab Content -->
+    <div class="tab-content" id="tab-2024">
     
     <!-- April Section -->
     <div class="month-section">
@@ -381,10 +389,10 @@
       </div>
   </div>
   <hr class="month-divider">
+    </div>
+  </section>
 
-</section>
-
-<!-- Gallery Section -->
+  <!-- Gallery Section -->
   <section id="gallery" class="section">
     <h2>Our Gallery</h2>
     <p>Explore our collection of moments captured throughout the year!</p>
@@ -629,13 +637,26 @@
     <i class="ri-arrow-up-line"></i>
   </button>
 
-  <!-- Footer with Cycling Quotes -->
+  <!-- Footer with Anime Character Quiz -->
   <footer class="footer">
     <div class="footer-content">
-      <div class="quote-container">
-        <h3>Japanese Wisdom</h3>
-        <p id="quote-text" class="quote-text"></p>
-        <p id="quote-translation" class="quote-translation"></p>
+      <div class="quiz-container">
+        <h3>🎭 Japanese Quiz: What Type of Anime Character Are You?</h3>
+        <p class="quiz-question" id="quiz-question">Click "Start Quiz" to discover your anime character type!</p>
+        
+        <div class="quiz-options" id="quiz-options" style="display: none;">
+          <button class="quiz-option" data-answer="A">A</button>
+          <button class="quiz-option" data-answer="B">B</button>
+          <button class="quiz-option" data-answer="C">C</button>
+          <button class="quiz-option" data-answer="D">D</button>
+        </div>
+        
+        <div class="quiz-result" id="quiz-result" style="display: none;">
+          <h4 id="result-character"></h4>
+          <p id="result-description"></p>
+        </div>
+        
+        <button class="quiz-btn" id="quiz-btn">Start Quiz</button>
       </div>
       <div class="footer-info">
         <p>&copy; 2024 Japanese Club at Strathmore University. All rights reserved.</p>
