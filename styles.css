@@ -1973,6 +1973,102 @@ img {
 }
 
 /* ============================================
+   JOURNEY SECTION & TAB NAVIGATION
+   ============================================ */
+
+/* Journey Section Styling */
+.section-journey {
+  background: linear-gradient(135deg, rgba(243, 234, 229, 0.15) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border-radius: 2rem;
+  padding: 4rem 2rem !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-journey::before {
+  content: '🎌';
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 5rem;
+  opacity: 0.05;
+  animation: rotate 30s linear infinite;
+}
+
+/* Tab Navigation Styles */
+.tab-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: white;
+  color: var(--text-dark);
+  border: 2px solid var(--primary-color);
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.tab-btn:hover {
+  background: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tab-btn.active {
+  background: var(--text-dark);
+  color: white;
+  border-color: var(--text-dark);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tab-btn:focus {
+  outline: none;
+}
+
+.tab-btn:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeInTab 0.5s ease;
+  padding: 2rem 0;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeInTab {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-title {
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* ============================================
    RESPONSIVE DESIGN - MOBILE FIRST
    ============================================ */
 
@@ -2966,116 +3062,6 @@ button, .btn, a, input, select, textarea {
   
   .trivia-intro {
     font-size: 1rem !important;
-  }
-}
-
-/* Journey Section Styling */
-.section-journey {
-  background: linear-gradient(135deg, rgba(243, 234, 229, 0.15) 0%, rgba(255, 255, 255, 0.9) 100%);
-  border-radius: 2rem;
-  padding: 4rem 2rem !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
-}
-
-.section-journey::before {
-  content: '🎌';
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  font-size: 5rem;
-  opacity: 0.05;
-  animation: rotate 30s linear infinite;
-}
-
-/* Tab Navigation Styles */
-.tab-navigation {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
-}
-
-.tab-btn {
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  background: white;
-  color: var(--text-dark);
-  border: 2px solid var(--primary-color);
-  border-radius: 3rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-}
-
-.tab-btn:hover {
-  background: var(--primary-color);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.tab-btn.active {
-  background: var(--text-dark);
-  color: white;
-  border-color: var(--text-dark);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-}
-
-.tab-btn:focus {
-  outline: none;
-}
-
-.tab-btn:focus-visible {
-  outline: 3px solid var(--primary-color);
-  outline-offset: 3px;
-}
-
-.tab-content {
-  display: none;
-  animation: fadeInTab 0.5s ease;
-  padding: 2rem 0;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-/* Additional padding for tab content on mobile */
-@media (max-width: 768px) {
-  .tab-content {
-    padding: 1rem 0;
-  }
-}
-
-@keyframes fadeInTab {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.tab-title {
-  font-size: 2rem;
-  color: var(--text-dark);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .tab-btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.95rem;
-  }
-  
-  .tab-title {
-    font-size: 1.5rem;
   }
 }
 
