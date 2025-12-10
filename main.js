@@ -1,9 +1,11 @@
-// Loading Screen
-window.addEventListener('load', () => {
+// Loading Screen - Immediate execution
+document.addEventListener('DOMContentLoaded', () => {
   const loadingScreen = document.querySelector('.loading-screen');
   if (loadingScreen) {
     setTimeout(() => {
-      loadingScreen.classList.add('hidden');
+      loadingScreen.style.opacity = '0';
+      loadingScreen.style.visibility = 'hidden';
+      loadingScreen.style.pointerEvents = 'none';
     }, 2000); // Hide after 2 seconds
   }
 });
