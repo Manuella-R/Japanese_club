@@ -152,6 +152,17 @@ nav.scrolled {
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Ensure nav doesn't overlap content */
+body {
+  padding-top: 60px;
+}
+
+@media (width > 768px) {
+  body {
+    padding-top: 0;
+  }
+}
+
 .nav__header {
   padding: 1rem;
   width: 100%;
@@ -1387,9 +1398,9 @@ img {
   }
 }
 
-/* Parallax effect for hero section */
+/* Parallax effect for hero section - DISABLED to prevent floating banner issue */
 .container__right {
-  animation: floatAnimation 6s ease-in-out infinite;
+  /* animation: floatAnimation 6s ease-in-out infinite; */
 }
 
 @keyframes floatAnimation {
@@ -1441,6 +1452,7 @@ img {
 }
 
 @media (max-width: 768px) {
+  /* Navigation */
   .nav__menu__btn {
     display: block;
   }
@@ -1454,25 +1466,120 @@ img {
     background-color: var(--text-dark);
     transform: translateY(-100%);
     transition: transform 0.3s ease;
+    z-index: 999;
   }
 
   .nav__links.open {
     transform: translateY(0);
   }
 
+  /* Hero Section */
   .container {
     grid-template-columns: 1fr;
+    padding: 3rem 1rem;
   }
   
-  .quote-text {
-    font-size: 1.5rem;
+  .container__left {
+    padding-inline: 1rem;
   }
   
   .container__left h1 {
-    font-size: 2.5rem;
-    line-height: 3rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.5rem;
   }
   
+  .container__left h4 {
+    font-size: 0.9rem;
+  }
+  
+  .container__btn {
+    margin-top: 2rem;
+  }
+  
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Images */
+  .tent-1, .tent-2 {
+    max-width: 200px !important;
+  }
+  
+  .images {
+    gap: 1rem;
+  }
+  
+  /* Content */
+  .content {
+    padding: 1rem;
+  }
+  
+  .content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .content h3 {
+    font-size: 0.9rem;
+  }
+  
+  .content p {
+    font-size: 0.95rem;
+  }
+  
+  /* Sections */
+  .section {
+    padding: 2rem 1rem;
+  }
+  
+  .section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .section p {
+    font-size: 1rem;
+  }
+  
+  #what-we-did > h2,
+  #gallery h2 {
+    font-size: 1.8rem;
+  }
+  
+  /* Month Sections */
+  .month-section {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .month-content {
+    flex-direction: column;
+    text-align: left;
+    gap: 1rem;
+  }
+  
+  .month-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 1rem 0;
+    border-radius: 0.5rem;
+  }
+  
+  .month-section h3 {
+    font-size: 1.3rem;
+  }
+  
+  /* Footer */
+  .quote-text {
+    font-size: 1.3rem;
+  }
+  
+  .quote-translation {
+    font-size: 0.9rem;
+  }
+  
+  /* Back to Top */
   .back-to-top {
     width: 45px;
     height: 45px;
@@ -1481,25 +1588,14 @@ img {
     font-size: 1.2rem;
   }
   
-  .month-content {
-    flex-direction: column;
-    text-align: center;
+  /* Floating Elements */
+  .floating-elements {
+    display: none; /* Hide on mobile for better performance */
   }
   
-  .month-image {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    margin-bottom: 1rem;
-  }
-  
-  #what-we-did > h2,
-  #gallery h2 {
-    font-size: 2rem;
-  }
-  
-  .section h2 {
-    font-size: 2rem;
+  /* Scroll Indicator */
+  .scroll-indicator {
+    margin-top: 2rem;
   }
 }
 
@@ -1780,29 +1876,74 @@ img {
 @media (max-width: 768px) {
   .section-2025 {
     padding: 2rem 1rem !important;
+    margin-top: 1rem;
+  }
+  
+  .section-intro {
+    font-size: 1rem;
+    margin-bottom: 2rem;
   }
   
   .stats-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    margin: 2rem 0;
+    padding: 1rem 0;
   }
   
   .stat-card {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0.5rem;
   }
   
-  .stat-number {
+  .stat-icon {
     font-size: 2rem;
   }
   
-  .cs-grid,
-  .goals-grid {
-    grid-template-columns: 1fr;
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+  }
+  
+  .month-section-2025 {
+    padding: 1rem;
+    margin: 1.5rem 0;
   }
   
   .month-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .month-header h3 {
+    font-size: 1.3rem;
+  }
+  
+  .month-tag {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .event-banner {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .event-banner h4 {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  
+  .month-text p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .highlight-section {
+    border-width: 2px;
   }
   
   .milestone-highlight {
@@ -1997,25 +2138,98 @@ img {
 }
 
 @media (max-width: 768px) {
+  /* Join Section */
+  .join-section {
+    padding: 3rem 1rem;
+  }
+  
   .join-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .join-subtitle {
     font-size: 1rem;
+    margin-bottom: 2rem;
   }
   
   .join-benefits {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .benefit-item {
+    padding: 1.5rem;
+  }
+  
+  .benefit-icon {
+    font-size: 2.5rem;
+  }
+  
+  .benefit-item h4 {
+    font-size: 1.1rem;
+  }
+  
+  .benefit-item p {
+    font-size: 0.9rem;
   }
   
   .join-cta {
     flex-direction: column;
+    gap: 0.8rem;
+    margin: 2rem 0;
   }
   
   .join-btn {
     width: 100%;
     justify-content: center;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .social-links h3 {
+    font-size: 1.2rem;
+  }
+  
+  .social-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+  
+  /* Gallery */
+  .gallery-container {
+    padding: 15px 0;
+  }
+  
+  .gallery-item {
+    width: 250px;
+    height: 170px;
+  }
+  
+  /* Trivia */
+  .trivia-carousel {
+    padding: 0 1.5rem;
+  }
+  
+  .trivia-content {
+    min-height: 250px;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 2rem 1rem 1rem;
+  }
+  
+  .quote-container {
+    padding: 1.5rem;
+  }
+  
+  .footer-info {
+    padding-top: 1rem;
+  }
+  
+  .footer-info p {
+    font-size: 0.85rem;
   }
 }
