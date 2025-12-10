@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>The Chronicles of the Eternal Rain</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -72,6 +73,60 @@
                     <ul id="recs-list" class="recs-list"></ul>
                 </div>
                 <button id="restart-btn" class="btn-primary">Take The Test Again</button>
+=======
+    <title>Anime Character Quiz - Japanese Club</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="header">
+            <h1>🎭 What Type of Anime Character Are You?</h1>
+            <p class="subtitle">Discover your anime personality!</p>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="welcome-content">
+                <p class="intro-text">
+                    Are you the brave protagonist, the wise strategist, or perhaps the mysterious wild card? 
+                    Take this quiz to find out which anime archetype matches your personality!
+                </p>
+                <button class="btn-primary" onclick="startQuiz()">Start Quiz</button>
+                <a href="../index.html" class="btn-secondary">Back to Home</a>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="progress-bar">
+                <div id="progress" class="progress-fill"></div>
+            </div>
+            <div class="question-counter">
+                <span id="current-question">1</span> / <span id="total-questions">10</span>
+            </div>
+            
+            <div id="question-container">
+                <h2 id="question-text" class="question"></h2>
+                <div id="options-container" class="options"></div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="results-content">
+                <div class="character-icon" id="character-icon">🎌</div>
+                <h2 id="character-type" class="character-title"></h2>
+                <p id="character-description" class="character-desc"></p>
+                <div class="traits-container" id="traits-container"></div>
+                <div class="anime-examples">
+                    <h3>Similar Characters:</h3>
+                    <p id="anime-examples"></p>
+                </div>
+                <div class="button-group">
+                    <button class="btn-primary" onclick="restartQuiz()">Take Again</button>
+                    <a href="../index.html" class="btn-secondary">Back to Home</a>
+                </div>
+>>>>>>> 571a732 (Auto-commit pending changes before rebase - PR/MR synchronize)
             </div>
         </div>
     </div>
@@ -79,4 +134,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 571a732 (Auto-commit pending changes before rebase - PR/MR synchronize)
