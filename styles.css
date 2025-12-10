@@ -2073,20 +2073,39 @@ img {
    ============================================ */
 
 /* ============================================
-   DISABLE ANIMATIONS ON MOBILE
+   DISABLE ALL ANIMATIONS & TRANSITIONS ON MOBILE
    ============================================ */
 
 @media (max-width: 768px) {
-  /* Disable scroll animations */
-  .fade-in {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    transition: none !important;
+  /* Disable smooth scroll behavior */
+  html {
+    scroll-behavior: auto !important;
   }
   
-  .fade-in-visible {
+  /* Disable ALL animations and transitions globally */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  
+  /* Force instant display of all elements */
+  .fade-in,
+  .fade-in-visible,
+  .section,
+  .month-section,
+  .month-section-2025,
+  .stat-card,
+  .benefit-item,
+  .trivia-item,
+  .gallery-item {
     opacity: 1 !important;
-    transform: translateY(0) !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
   }
   
   /* Disable page load animation */
@@ -2106,25 +2125,41 @@ img {
   /* Disable join section animations */
   .join-title,
   .join-subtitle,
-  .benefit-item,
   .join-cta,
   .social-links {
     animation: none !important;
     opacity: 1 !important;
   }
   
-  /* Keep only essential tab switching animation */
+  /* Disable tab animations */
   .tab-content {
     animation: none !important;
+    transition: none !important;
   }
   
   .tab-content.active {
     opacity: 1 !important;
+    display: block !important;
   }
   
   /* Disable floating animations */
   .float-item {
     animation: none !important;
+    display: none !important;
+  }
+  
+  /* Disable stat counter animations */
+  .stat-number {
+    animation: none !important;
+  }
+  
+  /* Disable all hover transforms on mobile (prevent glitches) */
+  .btn:hover,
+  .tab-btn:hover,
+  .benefit-item:hover,
+  .gallery-item:hover,
+  img:hover {
+    transform: none !important;
   }
 }
 

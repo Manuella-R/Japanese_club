@@ -35,8 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const isInView = rect.top >= 0 && rect.top <= window.innerHeight * 0.5;
       
       if (!isInView) {
+        // Instant scroll on mobile, smooth on desktop
+        const scrollBehavior = window.innerWidth <= 768 ? 'auto' : 'smooth';
         setTimeout(() => {
-          journeySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          journeySection.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
         }, 100);
       }
     }
@@ -290,6 +292,8 @@ window.addEventListener('scroll', () => {
 });
 
 // Smooth scroll for anchor links with mobile menu close
+const isMobileScroll = window.innerWidth <= 768;
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -320,13 +324,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
-      // Add offset for fixed nav on mobile
+      // Add offset for fixed nav
       const navHeight = document.querySelector('nav').offsetHeight;
       const targetPosition = target.offsetTop - navHeight;
       
+      // Instant scroll on mobile, smooth on desktop
       window.scrollTo({
         top: targetPosition,
-        behavior: 'smooth'
+        behavior: isMobileScroll ? 'auto' : 'smooth'
       });
     }
   });
@@ -360,6 +365,13 @@ window.addEventListener('scroll', highlightNav);
 // Animated Counter for Stats
 function animateCounter(element) {
   const target = parseInt(element.getAttribute('data-target'));
+  
+  // Instant display on mobile, animated on desktop
+  if (window.innerWidth <= 768) {
+    element.textContent = target;
+    return;
+  }
+  
   const duration = 2000; // 2 seconds
   const increment = target / (duration / 16); // 60fps
   let current = 0;
