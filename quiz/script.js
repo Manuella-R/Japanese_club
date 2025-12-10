@@ -5,7 +5,7 @@ const questions = [
         bridgeText: "The Guild Master watches you as you look around the room...",
         question: "You are at the tavern waiting for the rain to stop. Where are you sitting?",
         answers: [
-            { text: "Right at the bar, chatting with the bartender.", scores: { leader: 1, heart: 1 } },
+            { text: "Right at the bar, chatting with the bartender.", scores: { heart: 1, leader: 1 } },
             { text: "In a booth in the back corner, reading.", scores: { lancer: 1, edgelord: 1 } },
             { text: "Moving around, bothering my teammates.", scores: { gremlin: 1, wildcard: 1 } },
             { text: "Checking the supplies list for the third time.", scores: { strategist: 1, parent: 1 } }
@@ -19,7 +19,7 @@ const questions = [
             { text: "A musical instrument or sketchbook.", scores: { heart: 1, giant: 1 } },
             { text: "A sentimental charm I refuse to explain.", scores: { edgelord: 1, underdog: 1 } },
             { text: "My pillow. I need quality sleep.", scores: { cynic: 1, lancer: 1 } },
-            { text: "Weights. Never skip training.", scores: { junkie: 1, leader: 1 } }
+            { text: "Weights. Never skip training.", scores: { junkie: 1, underdog: 1 } }
         ]
     },
     {
@@ -27,7 +27,7 @@ const questions = [
         bridgeText: "",
         question: "The journey begins. The path is flat. How do you walk?",
         answers: [
-            { text: "In the front, setting the pace.", scores: { leader: 1, wildcard: 1 } },
+            { text: "In the front, setting the pace.", scores: { wildcard: 1, leader: 1 } },
             { text: "In the back, watching our rear.", scores: { lancer: 1, parent: 1 } },
             { text: "Sleeping in the wagon.", scores: { cynic: 1, strategist: 1 } },
             { text: "Wandering off to look at bugs/flowers.", scores: { gremlin: 1, giant: 1 } }
@@ -41,7 +41,7 @@ const questions = [
             { text: "Eat it quickly. Fuel is fuel.", scores: { junkie: 1, lancer: 1 } },
             { text: "Forage for herbs to make it taste better.", scores: { parent: 1, giant: 1 } },
             { text: "Complain loudly. \"Again?!\"", scores: { gremlin: 1, cynic: 1 } },
-            { text: "Share my portion with the hungriest person.", scores: { heart: 1, leader: 1 } }
+            { text: "Share my portion with the hungriest person.", scores: { heart: 1, underdog: 1 } }
         ]
     },
     {
@@ -50,8 +50,8 @@ const questions = [
         question: "The map is damaged at a fork in the road.",
         answers: [
             { text: "\"Let's go left! It feels right!\"", scores: { wildcard: 1, leader: 1 } },
-            { text: "Look for environmental clues.", scores: { strategist: 1, lancer: 1 } },
-            { text: "Flip a coin.", scores: { cynic: 1, gremlin: 1 } },
+            { text: "Look for environmental clues.", scores: { lancer: 1, parent: 1 } },
+            { text: "Flip a coin.", scores: { cynic: 1, edgelord: 1 } },
             { text: "Ask a local squirrel for directions.", scores: { heart: 1, giant: 1 } }
         ]
     },
@@ -62,8 +62,8 @@ const questions = [
         answers: [
             { text: "It's our new mascot!", scores: { leader: 1, gremlin: 1 } },
             { text: "Ignore it. Attachments are weakness.", scores: { lancer: 1, edgelord: 1 } },
-            { text: "Check it for fleas immediately.", scores: { parent: 1 } },
-            { text: "If it can fight, it can stay.", scores: { junkie: 1 } }
+            { text: "Check it for fleas immediately.", scores: { parent: 1, giant: 1 } },
+            { text: "If it can fight, it can stay.", scores: { junkie: 1, wildcard: 1 } }
         ]
     },
     {
@@ -85,7 +85,7 @@ const questions = [
             { text: "Jump it.", scores: { wildcard: 1, junkie: 1 } },
             { text: "Look for a safe way around.", scores: { parent: 1, cynic: 1 } },
             { text: "Build a pulley system using physics.", scores: { strategist: 1, underdog: 1 } },
-            { text: "\"I'll go first to test it.\"", scores: { leader: 1, giant: 1 } }
+            { text: "\"I'll go first to test it.\"", scores: { underdog: 1, giant: 1 } }
         ]
     },
     {
@@ -94,7 +94,7 @@ const questions = [
         question: "A shopkeeper tries to scam your friend.",
         answers: [
             { text: "Flip the table.", scores: { junkie: 1, gremlin: 1 } },
-            { text: "Negotiate the price down with a scary smile.", scores: { strategist: 1, lancer: 1 } },
+            { text: "Negotiate the price down with a scary smile.", scores: { strategist: 1, edgelord: 1 } },
             { text: "Pay the difference yourself to avoid drama.", scores: { heart: 1, giant: 1 } },
             { text: "Yell \"That's not fair!\"", scores: { leader: 1, underdog: 1 } }
         ]
@@ -106,8 +106,8 @@ const questions = [
         answers: [
             { text: "Chase it down barefoot with rage.", scores: { junkie: 1, gremlin: 1 } },
             { text: "Laugh about it.", scores: { heart: 1, leader: 1 } },
-            { text: "Sigh. \"I hate this adventure.\"", scores: { cynic: 1 } },
-            { text: "Track it silently. It will pay.", scores: { edgelord: 1, lancer: 1 } }
+            { text: "Sigh. \"I hate this adventure.\"", scores: { cynic: 1, lancer: 1 } },
+            { text: "Track it silently. It will pay.", scores: { edgelord: 1, wildcard: 1 } }
         ]
     },
     {
@@ -115,7 +115,7 @@ const questions = [
         bridgeText: "The rain outside gets heavier. The Guild Master looks you in the eye. \"Let's see how you handle pressure...\"",
         question: "The team argues about directions.",
         answers: [
-            { text: "Stay out of it.", scores: { cynic: 1, lancer: 1 } },
+            { text: "Stay out of it.", scores: { cynic: 1, edgelord: 1 } },
             { text: "Yell louder to assert dominance.", scores: { leader: 1, gremlin: 1 } },
             { text: "Mediate and make peace.", scores: { parent: 1, heart: 1 } },
             { text: "Just start walking the right way.", scores: { strategist: 1, wildcard: 1 } }
@@ -127,9 +127,9 @@ const questions = [
         question: "You reach the dungeon. It's too quiet.",
         answers: [
             { text: "Scream at the darkness.", scores: { junkie: 1, leader: 1 } },
-            { text: "Hand on weapon. Eyes scanning.", scores: { lancer: 1, strategist: 1 } },
+            { text: "Hand on weapon. Eyes scanning.", scores: { lancer: 1, giant: 1 } },
             { text: "My stomach hurts.", scores: { underdog: 1, cynic: 1 } },
-            { text: "Listen to the wind. Trust senses.", scores: { wildcard: 1, giant: 1 } }
+            { text: "Listen to the wind. Trust senses.", scores: { wildcard: 1, heart: 1 } }
         ]
     },
     {
@@ -138,7 +138,7 @@ const questions = [
         question: "The Boss is a Mirror showing your fear.",
         answers: [
             { text: "I see myself alone.", scores: { heart: 1, parent: 1 } },
-            { text: "I see myself weak.", scores: { underdog: 1, junkie: 1 } },
+            { text: "I see myself weak.", scores: { underdog: 1, cynic: 1 } },
             { text: "I see myself as the villain.", scores: { edgelord: 1, leader: 1 } },
             { text: "Smash the mirror immediately.", scores: { gremlin: 1, wildcard: 1 } }
         ]
@@ -151,7 +151,7 @@ const questions = [
             { text: "\"What's the counter-strategy?\"", scores: { strategist: 1, cynic: 1 } },
             { text: "\"Is everyone else okay?\"", scores: { parent: 1, giant: 1 } },
             { text: "\"I can still move.\"", scores: { underdog: 1, leader: 1 } },
-            { text: "*Smiles.* \"Now it's interesting.\"", scores: { junkie: 1, lancer: 1 } }
+            { text: "*Smiles.* \"Now it's interesting.\"", scores: { junkie: 1, edgelord: 1 } }
         ]
     },
     {
@@ -160,8 +160,8 @@ const questions = [
         question: "You win a magical ring. Who gets it?",
         answers: [
             { text: "The person who needs the stat boost.", scores: { strategist: 1, parent: 1 } },
-            { text: "Sell it and split the cash.", scores: { cynic: 1, lancer: 1 } },
-            { text: "Rock-Paper-Scissors!", scores: { leader: 1, gremlin: 1 } },
+            { text: "Sell it and split the cash.", scores: { cynic: 1, edgelord: 1 } },
+            { text: "Rock-Paper-Scissors!", scores: { heart: 1, gremlin: 1 } },
             { text: "I don't want it. Cursed items are trouble.", scores: { wildcard: 1, giant: 1 } }
         ]
     },
@@ -205,8 +205,8 @@ const questions = [
         answers: [
             { text: "Memes at 3 AM.", scores: { gremlin: 1, wildcard: 1 } },
             { text: "Reads but never replies.", scores: { lancer: 1, edgelord: 1 } },
-            { text: "Organizing the hang out.", scores: { parent: 1, leader: 1 } },
-            { text: "Correcting grammar.", scores: { strategist: 1, cynic: 1 } }
+            { text: "Organizing the hang out.", scores: { parent: 1, giant: 1 } },
+            { text: "Correcting grammar.", scores: { heart: 1, cynic: 1 } }
         ]
     },
     {
@@ -214,10 +214,10 @@ const questions = [
         bridgeText: "",
         question: "One word to live by.",
         answers: [
-            { text: "Freedom.", scores: { leader: 1, wildcard: 1 } },
-            { text: "Logic.", scores: { strategist: 1, cynic: 1 } },
-            { text: "Strength.", scores: { junkie: 1, lancer: 1 } },
-            { text: "Kindness.", scores: { heart: 1, giant: 1 } }
+            { text: "Freedom.", scores: { wildcard: 1, gremlin: 1 } },
+            { text: "Logic.", scores: { lancer: 1, cynic: 1 } },
+            { text: "Strength.", scores: { junkie: 1, giant: 1 } },
+            { text: "Kindness.", scores: { heart: 1, underdog: 1 } }
         ]
     }
 ];
@@ -419,23 +419,64 @@ function showResults() {
     // Change to tavern background for results
     changeBackground('tavern');
 
-    // Find highest score
+    // Find highest score and all tied winners
     let maxScore = 0;
-    let winner = 'leader';
+    let winners = [];
     
     Object.keys(scores).forEach(key => {
         if (scores[key] > maxScore) {
             maxScore = scores[key];
-            winner = key;
+            winners = [key];
+        } else if (scores[key] === maxScore) {
+            winners.push(key);
         }
     });
 
-    // Display results
+    // If there's a tie, randomly select one winner
+    let winner = winners[Math.floor(Math.random() * winners.length)];
+    
+    // Get secondary archetype (if tied or second highest)
+    let secondaryWinner = null;
+    if (winners.length > 1) {
+        // If tied, pick another one from the tie
+        const otherWinners = winners.filter(w => w !== winner);
+        secondaryWinner = otherWinners[Math.floor(Math.random() * otherWinners.length)];
+    } else {
+        // Find second highest score
+        let secondMaxScore = 0;
+        Object.keys(scores).forEach(key => {
+            if (key !== winner && scores[key] > secondMaxScore) {
+                secondMaxScore = scores[key];
+                secondaryWinner = key;
+            }
+        });
+        // Only show secondary if it's close (within 2 points)
+        if (maxScore - secondMaxScore > 2) {
+            secondaryWinner = null;
+        }
+    }
+
+    // Display primary result
     const result = resultsData[winner];
     document.getElementById('result-title').textContent = result.title;
     document.getElementById('result-description').textContent = result.description;
     document.getElementById('compatible').textContent = result.compatible;
     document.getElementById('incompatible').textContent = result.incompatible;
+
+    // Display secondary archetype if present
+    const secondaryContainer = document.getElementById('secondary-archetype');
+    if (secondaryWinner && secondaryContainer) {
+        const secondaryResult = resultsData[secondaryWinner];
+        secondaryContainer.innerHTML = `
+            <div class="secondary-trait">
+                <h4>🎭 Secondary Trait: ${secondaryResult.title}</h4>
+                <p>${secondaryResult.description}</p>
+            </div>
+        `;
+        secondaryContainer.style.display = 'block';
+    } else if (secondaryContainer) {
+        secondaryContainer.style.display = 'none';
+    }
 
     // Display recommendations
     const recsList = document.getElementById('recs-list');
