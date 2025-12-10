@@ -1,3 +1,23 @@
+// Tab Switching Functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.getAttribute('data-tab');
+      
+      // Remove active class from all buttons and contents
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // Add active class to clicked button and corresponding content
+      btn.classList.add('active');
+      document.getElementById(`tab-${targetTab}`).classList.add('active');
+    });
+  });
+});
+
 // Mobile Menu Toggle
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
@@ -97,52 +117,119 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Cycling Quotes Functionality
-const quotes = [
-  { text: "一期一会", translation: "(Ichi-go ichi-e) - Treasure every encounter, for it will never recur." },
-  { text: "七転び八起き", translation: "(Nana korobi ya oki) - Fall seven times, stand up eight." },
-  { text: "花鳥風月", translation: "(Kachō fūgetsu) - Experience the beauty of nature." },
-  { text: "温故知新", translation: "(Onko chishin) - Learn from the past to discover new things." },
-  { text: "十人十色", translation: "(Jū nin to iro) - To each their own - everyone has different tastes." },
-  { text: "猿も木から落ちる", translation: "(Saru mo ki kara ochiru) - Even monkeys fall from trees - everyone makes mistakes." },
-  { text: "継続は力なり", translation: "(Keizoku wa chikara nari) - Continuity is strength." },
-  { text: "千里の道も一歩から", translation: "(Senri no michi mo ippo kara) - A journey of a thousand miles begins with a single step." }
+// Anime Character Quiz
+const quizQuestions = [
+  {
+    question: "How do you approach challenges?",
+    options: {
+      A: "Head-on with determination!",
+      B: "With careful planning and strategy",
+      C: "By supporting others and working together",
+      D: "With creativity and unconventional thinking"
+    }
+  },
+  {
+    question: "What's your ideal way to spend a weekend?",
+    options: {
+      A: "Training or pursuing your goals",
+      B: "Reading or learning something new",
+      C: "Hanging out with friends",
+      D: "Exploring new places or trying new things"
+    }
+  },
+  {
+    question: "Which trait describes you best?",
+    options: {
+      A: "Brave and passionate",
+      B: "Intelligent and analytical",
+      C: "Kind and supportive",
+      D: "Mysterious and unique"
+    }
+  }
 ];
 
-let currentQuoteIndex = 0;
+const characterResults = {
+  'AAA': { name: "The Shonen Protagonist", desc: "You're brave, determined, and never give up! Like Naruto or Luffy, you inspire others with your passion!" },
+  'AAB': { name: "The Determined Hero", desc: "Strong-willed with strategic thinking! You combine courage with smarts, like Tanjiro from Demon Slayer!" },
+  'AAC': { name: "The Supportive Leader", desc: "You're brave but also care deeply about your friends! Like Deku from My Hero Academia!" },
+  'BBB': { name: "The Strategist", desc: "Brilliant and analytical! You're like Light Yagami or Senku - always thinking three steps ahead!" },
+  'BBC': { name: "The Wise Mentor", desc: "Smart and caring! You guide others with wisdom and kindness, like Kakashi or Iroh!" },
+  'CCC': { name: "The True Friend", desc: "Loyal and supportive! You're the heart of your friend group, like Hinata or Todoroki's kind side!" },
+  'DDD': { name: "The Mysterious Wild Card", desc: "Unpredictable and fascinating! Like Gojo or Killua, you keep everyone guessing!" },
+  'default': { name: "The Balanced Character", desc: "You have a perfect mix of traits! Like Saitama - surprisingly deep with a unique perspective!" }
+};
 
-function cycleQuote() {
-  const quoteText = document.getElementById('quote-text');
-  const quoteTranslation = document.getElementById('quote-translation');
-  
-  // Fade out
-  quoteText.style.opacity = '0';
-  quoteTranslation.style.opacity = '0';
-  
-  setTimeout(() => {
-    // Update quote
-    currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-    quoteText.textContent = quotes[currentQuoteIndex].text;
-    quoteTranslation.textContent = quotes[currentQuoteIndex].translation;
-    
-    // Fade in
-    quoteText.style.opacity = '1';
-    quoteTranslation.style.opacity = '1';
-  }, 500);
+let currentQuestion = 0;
+let answers = [];
+
+function startQuiz() {
+  currentQuestion = 0;
+  answers = [];
+  showQuestion();
+  document.getElementById('quiz-btn').style.display = 'none';
 }
 
-// Initialize first quote and start cycling
-window.addEventListener('DOMContentLoaded', () => {
-  const quoteText = document.getElementById('quote-text');
-  const quoteTranslation = document.getElementById('quote-translation');
+function showQuestion() {
+  const questionEl = document.getElementById('quiz-question');
+  const optionsEl = document.getElementById('quiz-options');
+  const resultEl = document.getElementById('quiz-result');
   
-  if (quoteText && quoteTranslation) {
-    quoteText.textContent = quotes[0].text;
-    quoteTranslation.textContent = quotes[0].translation;
+  resultEl.style.display = 'none';
+  
+  if (currentQuestion < quizQuestions.length) {
+    questionEl.textContent = quizQuestions[currentQuestion].question;
+    optionsEl.style.display = 'flex';
     
-    // Change quote every 5 seconds
-    setInterval(cycleQuote, 5000);
+    // Update option labels
+    const optionBtns = document.querySelectorAll('.quiz-option');
+    optionBtns.forEach(btn => {
+      const answer = btn.getAttribute('data-answer');
+      btn.textContent = `${answer}: ${quizQuestions[currentQuestion].options[answer]}`;
+    });
+  } else {
+    showResult();
   }
+}
+
+function answerQuestion(answer) {
+  answers.push(answer);
+  currentQuestion++;
+  showQuestion();
+}
+
+function showResult() {
+  const questionEl = document.getElementById('quiz-question');
+  const optionsEl = document.getElementById('quiz-options');
+  const resultEl = document.getElementById('quiz-result');
+  const btnEl = document.getElementById('quiz-btn');
+  
+  optionsEl.style.display = 'none';
+  questionEl.textContent = "Your Result:";
+  
+  const answerKey = answers.join('');
+  const result = characterResults[answerKey] || characterResults['default'];
+  
+  document.getElementById('result-character').textContent = result.name;
+  document.getElementById('result-description').textContent = result.desc;
+  resultEl.style.display = 'block';
+  
+  btnEl.textContent = 'Retake Quiz';
+  btnEl.style.display = 'block';
+}
+
+// Quiz event listeners
+document.addEventListener('DOMContentLoaded', () => {
+  const quizBtn = document.getElementById('quiz-btn');
+  if (quizBtn) {
+    quizBtn.addEventListener('click', startQuiz);
+  }
+  
+  const quizOptions = document.querySelectorAll('.quiz-option');
+  quizOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      answerQuestion(this.getAttribute('data-answer'));
+    });
+  });
 });
 
 // Add scroll animations for sections
