@@ -1,17 +1,3 @@
-// Loading Screen - COMMENTED OUT (wasn't working on GitHub Pages)
-/*
-document.addEventListener('DOMContentLoaded', () => {
-  const loadingScreen = document.querySelector('.loading-screen');
-  if (loadingScreen) {
-    setTimeout(() => {
-      loadingScreen.style.opacity = '0';
-      loadingScreen.style.visibility = 'hidden';
-      loadingScreen.style.pointerEvents = 'none';
-    }, 2000); // Hide after 2 seconds
-  }
-});
-*/
-
 // Mobile Menu Toggle
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
