@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
   const loadingScreen = document.querySelector('.loading-screen');
   setTimeout(() => {
     loadingScreen.classList.add('hidden');
-  }, 1500); // Hide after 1.5 seconds
+  }, 5000); // Hide after 5 seconds
 });
 
 // Mobile Menu Toggle
