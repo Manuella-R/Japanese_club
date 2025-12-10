@@ -2072,6 +2072,62 @@ img {
    RESPONSIVE DESIGN - MOBILE FIRST
    ============================================ */
 
+/* ============================================
+   DISABLE ANIMATIONS ON MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Disable scroll animations */
+  .fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+  
+  .fade-in-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Disable page load animation */
+  body {
+    animation: none !important;
+  }
+  
+  /* Disable hero animations */
+  .container__left h1,
+  .container__left h4,
+  .scroll-indicator {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Disable join section animations */
+  .join-title,
+  .join-subtitle,
+  .benefit-item,
+  .join-cta,
+  .social-links {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  
+  /* Keep only essential tab switching animation */
+  .tab-content {
+    animation: none !important;
+  }
+  
+  .tab-content.active {
+    opacity: 1 !important;
+  }
+  
+  /* Disable floating animations */
+  .float-item {
+    animation: none !important;
+  }
+}
+
 /* Small phones: 320px - 480px */
 @media (max-width: 480px) {
   .container__left h1 {

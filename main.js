@@ -235,27 +235,41 @@ document.addEventListener('keydown', (e) => {
 // No JavaScript needed for quiz functionality - redirects to quiz/index.html
 
 // Add scroll animations for sections
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
+// Disable scroll animations on mobile devices
+const isMobile = window.innerWidth <= 768;
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in-visible');
-    }
-  });
-}, observerOptions);
+if (!isMobile) {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
 
-// Observe all sections
-document.addEventListener('DOMContentLoaded', () => {
-  const sections = document.querySelectorAll('.section, .month-section');
-  sections.forEach(section => {
-    section.classList.add('fade-in');
-    observer.observe(section);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in-visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections (only on desktop)
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.section, .month-section');
+    sections.forEach(section => {
+      section.classList.add('fade-in');
+      observer.observe(section);
+    });
   });
-});
+} else {
+  // On mobile, just show everything immediately
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.section, .month-section');
+    sections.forEach(section => {
+      section.style.opacity = '1';
+      section.style.transform = 'translateY(0)';
+    });
+  });
+}
 
 // Add scrolled class to nav on scroll & update progress bar
 window.addEventListener('scroll', () => {
