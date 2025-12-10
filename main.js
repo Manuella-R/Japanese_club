@@ -1,585 +1,404 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Japanese Club at Strathmore University - Explore Japanese culture through language, anime, traditional arts, and exciting events. Join our vibrant community!" />
-  <meta name="keywords" content="Japanese Club, Strathmore University, Japanese culture, anime, manga, calligraphy, origami, Japan, cultural events" />
-  <meta name="author" content="Japanese Club at Strathmore University" />
-  <meta name="robots" content="index, follow" />
-  
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Japanese Club at Strathmore University" />
-  <meta property="og:description" content="Experience Japanese culture with us! From language basics to anime, calligraphy, and traditional experiences." />
-  <meta property="og:image" content="assets/Japanclublogohd.jpg" />
-  <meta property="og:url" content="https://yourdomain.com" />
-  <meta property="og:type" content="website" />
-  
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Japanese Club at Strathmore University" />
-  <meta name="twitter:description" content="Experience Japanese culture with us! Join our community of Japan enthusiasts." />
-  <meta name="twitter:image" content="assets/Japanclublogohd.jpg" />
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="assets/Japanclublogohd.jpg" />
-  
-  <!-- Stylesheets -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  
-  <title>Japanese Club at Strathmore University | 日本を愛し、共に学ぼう</title>
-</head>
-<body>
-  <!-- Scroll Progress Indicator -->
-  <div class="scroll-progress"></div>
+// Mobile Menu Toggle
+const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
+const menuBtnIcon = menuBtn.querySelector("i");
 
-  <!-- Navigation -->
-  <nav>
-    <div class="nav__header">
-      <div class="nav__logo"><a href="#">Japanese club</a></div>
-      <div class="nav__menu__btn" id="menu-btn"><i class="ri-menu-line"></i></div>
-    </div>
-    <ul class="nav__links" id="nav-links">
-      <li><a href="#home">HOME</a></li>
-      <li><a href="#about">ABOUT US</a></li>
-      <li><a href="#2025-section">2025 JOURNEY</a></li>
-      <li><a href="#what-we-did">2024 HIGHLIGHTS</a></li>
-      <li><a href="#gallery">GALLERY</a></li>
-    </ul>
-  </nav>
+// Toggle the "open" class when the menu button is clicked
+menuBtn.addEventListener("click", (e) => {
+  navLinks.classList.toggle("open");
+  const isOpen = navLinks.classList.contains("open");
+  menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+});
 
-  <!-- Home Section -->
-  <section id="home" class="container">
-    <!-- Floating Elements -->
-    <div class="floating-elements">
-      <span class="float-item" style="--delay: 0s; --duration: 15s;">桜</span>
-      <span class="float-item" style="--delay: 2s; --duration: 18s;">🎌</span>
-      <span class="float-item" style="--delay: 4s; --duration: 20s;">🌸</span>
-      <span class="float-item" style="--delay: 1s; --duration: 16s;">富士</span>
-      <span class="float-item" style="--delay: 3s; --duration: 19s;">🎎</span>
-      <span class="float-item" style="--delay: 5s; --duration: 17s;">和</span>
-    </div>
-    <div class="container__left">
-      <h1>日本を愛し、<br> 共に学ぼう！</h1>
-      <h4> (Nihon o aishi, tomo ni manabou!) - Love Japan, Learn Together!</h4>
-      <div class="container__btn">
-        <button class="btn"><a href="#">Join our community</a></button>
-      </div>
-      <div class="scroll-indicator">
-        <span>Scroll to explore</span>
-        <i class="ri-arrow-down-line"></i>
-      </div>
-    </div>
-    <div class="container__right">
-      <div class="images">
-        <img src="assets/karurajp2023.jpg" alt="Tent 1" class="tent-1" />
-        <img src="assets/transJapanese.png" alt="Tent 2" class="tent-2" />
-      </div>
-      <div class="content">
-        <h4>(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</h4>
-        <h2>みなさん、<br>
-          こんにちは　</h2>
-        <h3>Japanese club - 2024 Experience</h3>
-        <p>Explore Japanese culture with us! From language basics to anime, calligraphy, and traditional experiences, the Japanese Club at Strathmore brings Japan closer to you.</p>
-      </div>
-    </div>
-  </section>
+// Close the mobile menu when any nav link is clicked
+navLinks.addEventListener("click", (e) => {
+  navLinks.classList.remove("open");
+  menuBtnIcon.setAttribute("class", "ri-menu-line");
+});
 
-  <!-- About Us Section -->
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>Welcome to the Japanese Club at Strathmore University—a vibrant community for everyone passionate about Japan! Our club brings together enthusiasts of Japanese culture, language, and entertainment, providing an immersive space for students to explore and experience Japan’s unique heritage.<br>
+// ScrollReveal configuration for animations
+const scrollRevealOption = {
+  distance: "50px",
+  origin: "bottom",
+  duration: 1000,
+};
 
-      What We Do: Our activities range from thrilling anime and manga discussions to hands-on language support for those keen to learn basic Japanese. We host cultural events where members can wear traditional Japanese attire, learn the art of Japanese calligraphy, and practice origami—adding an interactive touch to our cultural exploration. Our club also encourages learning through fun quizzes that dive into the nuances of Japanese customs and traditions.<br>
-      
-      Whether you're a devoted anime fan, a curious language learner, or someone intrigued by Japan’s rich culture, the Japanese Club at Strathmore has something for you. Join us to connect, learn, and celebrate everything Japanese!</p>
-  </section>
+// ScrollReveal Animations
+ScrollReveal().reveal(".container__left h1", {
+  ...scrollRevealOption,
+});
+ScrollReveal().reveal(".container__left .container__btn", {
+  ...scrollRevealOption,
+  delay: 500,
+});
+ScrollReveal().reveal(".container__right h4", {
+  ...scrollRevealOption,
+  delay: 2000,
+});
+ScrollReveal().reveal(".container__right h2", {
+  ...scrollRevealOption,
+  delay: 2500,
+});
+ScrollReveal().reveal(".container__right h3", {
+  ...scrollRevealOption,
+  delay: 3000,
+});
+ScrollReveal().reveal(".container__right p", {
+  ...scrollRevealOption,
+  delay: 3500,
+});
+ScrollReveal().reveal(".container__right .tent-1", {
+  duration: 1000,
+  delay: 4000,
+});
+ScrollReveal().reveal(".container__right .tent-2", {
+  duration: 1000,
+  delay: 4500,
+});
+ScrollReveal().reveal(".location", {
+  ...scrollRevealOption,
+  origin: "left",
+  delay: 5000,
+});
+ScrollReveal().reveal(".socials span", {
+  ...scrollRevealOption,
+  origin: "top",
+  delay: 5500,
+  interval: 500,
+});
 
-  <section id="2025-section" class="section section-2025">
-    <h2>🎌 2025 Journey - Our Ongoing Adventure</h2>
-    <p class="section-intro">Welcome to 2025! This year brings new challenges and exciting opportunities as we continue to grow and share Japanese culture with the Strathmore community.</p>
+// Lightbox Functions
+// Function to open the lightbox and display the clicked image in full screen
+function openLightbox(imageSrc) {
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightbox-img");
+  
+  // Update the source of the lightbox image based on the clicked image
+  lightboxImg.src = imageSrc;
+
+  // Show the lightbox
+  lightbox.classList.add("show");
+  document.body.style.overflow = 'hidden';
+}
+
+// Function to close the lightbox
+function closeLightbox() {
+  var lightbox = document.getElementById("lightbox");
+
+  // Hide the lightbox
+  lightbox.classList.remove("show");
+  document.body.style.overflow = 'auto';
+}
+
+// Close lightbox with ESC key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLightbox();
+  }
+});
+
+// Cycling Quotes Functionality
+const quotes = [
+  { text: "一期一会", translation: "(Ichi-go ichi-e) - Treasure every encounter, for it will never recur." },
+  { text: "七転び八起き", translation: "(Nana korobi ya oki) - Fall seven times, stand up eight." },
+  { text: "花鳥風月", translation: "(Kachō fūgetsu) - Experience the beauty of nature." },
+  { text: "温故知新", translation: "(Onko chishin) - Learn from the past to discover new things." },
+  { text: "十人十色", translation: "(Jū nin to iro) - To each their own - everyone has different tastes." },
+  { text: "猿も木から落ちる", translation: "(Saru mo ki kara ochiru) - Even monkeys fall from trees - everyone makes mistakes." },
+  { text: "継続は力なり", translation: "(Keizoku wa chikara nari) - Continuity is strength." },
+  { text: "千里の道も一歩から", translation: "(Senri no michi mo ippo kara) - A journey of a thousand miles begins with a single step." }
+];
+
+let currentQuoteIndex = 0;
+
+function cycleQuote() {
+  const quoteText = document.getElementById('quote-text');
+  const quoteTranslation = document.getElementById('quote-translation');
+  
+  // Fade out
+  quoteText.style.opacity = '0';
+  quoteTranslation.style.opacity = '0';
+  
+  setTimeout(() => {
+    // Update quote
+    currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+    quoteText.textContent = quotes[currentQuoteIndex].text;
+    quoteTranslation.textContent = quotes[currentQuoteIndex].translation;
     
-    <!-- Stats Cards -->
-    <div class="stats-container">
-      <div class="stat-card">
-        <div class="stat-icon">👥</div>
-        <div class="stat-number" data-target="100">0</div>
-        <div class="stat-label">Active Members</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🎯</div>
-        <div class="stat-number" data-target="10">0</div>
-        <div class="stat-label">Events Planned</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🌟</div>
-        <div class="stat-number" data-target="3">0</div>
-        <div class="stat-label">Major Milestones</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🤝</div>
-        <div class="stat-number" data-target="3">0</div>
-        <div class="stat-label">Partnerships</div>
-      </div>
-    </div>
+    // Fade in
+    quoteText.style.opacity = '1';
+    quoteTranslation.style.opacity = '1';
+  }, 500);
+}
 
-    <!-- January Section -->
-    <div class="month-section-2025">
-        <div class="month-header">
-          <h3>🎪 January - Club Fair Success</h3>
-          <span class="month-tag">Fresh Beginnings</span>
-        </div>
-        <div class="month-content-2025">
-            <div class="event-banner january-banner">
-              <h4>Club Fair 2025</h4>
-            </div>
-            <div class="month-text">
-              <p>We kicked off the year with an exciting Club Fair! Thanks to the incredible support from <strong>Baraka and Perez from the Embassy</strong>, a wonderful representative from <strong>JICA</strong>, and our dedicated team members <strong>Mark and Clara</strong>, we had a fantastic turnout with many new registrations! The energy was amazing and we welcomed so many new members into our Japanese culture family.</p>
-            </div>
-        </div>
-    </div>
-    <hr class="month-divider">
+// Initialize first quote and start cycling
+window.addEventListener('DOMContentLoaded', () => {
+  const quoteText = document.getElementById('quote-text');
+  const quoteTranslation = document.getElementById('quote-translation');
+  
+  if (quoteText && quoteTranslation) {
+    quoteText.textContent = quotes[0].text;
+    quoteTranslation.textContent = quotes[0].translation;
+    
+    // Change quote every 5 seconds
+    setInterval(cycleQuote, 5000);
+  }
+});
 
-    <!-- May Section -->
-    <div class="month-section-2025">
-        <div class="month-header">
-          <h3>🍵 May - Culinary Adventures</h3>
-          <span class="month-tag">Authentic Experiences</span>
-        </div>
-        <div class="month-content-2025">
-            <div class="event-banner may-banner">
-              <h4>Matcha + Sushi Tasting</h4>
-            </div>
-            <div class="month-text">
-              <p><strong>Matcha + Sushi Tasting Event:</strong> We welcomed an incredible number of new members for this authentic Japanese food experience! The combination of traditional matcha tea and sushi proved to be the perfect way to introduce members to Japanese culinary culture. The turnout was phenomenal and everyone loved learning about the cultural significance of these iconic Japanese foods.</p>
-            </div>
-        </div>
-    </div>
-    <hr class="month-divider">
+// Add scroll animations for sections
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
 
-    <!-- June Section -->
-    <div class="month-section-2025">
-        <div class="month-header">
-          <h3>🎬 June - Cultural Experiences</h3>
-          <span class="month-tag">Embassy Visit</span>
-        </div>
-        <div class="month-content-2025">
-            <div class="event-banner june-banner">
-              <h4>Embassy Movie Week</h4>
-            </div>
-            <div class="month-text">
-              <p><strong>Embassy Movie Week:</strong> We had an amazing visit to the Japanese Embassy during their movie week! Lots of new faces joined us for this cultural experience, watching authentic Japanese films and learning about cinema culture.</p>
-              
-              <div class="event-banner june-banner-2">
-                <h4>Friday Meetup - 20+ Members!</h4>
-              </div>
-              <p><strong>Friday Meetup Success:</strong> Our Friday meetup in June was exceptionally well-attended with around <strong>20 members</strong>! We enjoyed activities including calligraphy practice, interactive Kahoots about Japanese culture, origami, and great conversations. The energy was fantastic!</p>
-            </div>
-        </div>
-    </div>
-    <hr class="month-divider">
-
-    <!-- Demon Slayer - BIGGEST EVENT -->
-    <div class="month-section-2025 highlight-section">
-        <div class="month-header">
-          <h3>👹 Demon Slayer Movie Night</h3>
-          <span class="month-tag highlight">BIGGEST EVENT 2025!</span>
-        </div>
-        <div class="month-content-2025">
-            <div class="event-banner demon-slayer-banner">
-              <h4>🎬 Demon Slayer: Kimetsu no Yaiba</h4>
-            </div>
-            <div class="month-text">
-              <p><strong>THE Highlight of 2025!</strong> Our Demon Slayer movie screening was absolutely EPIC! We had an incredible turnout with anime enthusiasts and Japanese culture lovers coming together for an unforgettable experience. The atmosphere was electric, members came in cosplay, and the shared excitement made this our most successful event of the year. This is what Japanese club is all about - bringing people together through shared love of Japanese culture!</p>
-            </div>
-        </div>
-    </div>
-    <hr class="month-divider">
-
-    <!-- October - Embassy Festival -->
-    <div class="month-section-2025">
-        <div class="month-header">
-          <h3>🎌 October - Embassy Cultural Festival</h3>
-          <span class="month-tag">Major Event</span>
-        </div>
-        <div class="month-content-2025">
-            <div class="event-banner october-banner">
-              <h4>Japanese Embassy Cultural Festival</h4>
-            </div>
-            <div class="month-text">
-              <p><strong>Embassy Cultural Festival:</strong> We had an amazing time at the Japanese Embassy's Cultural Festival in October! This was a spectacular showcase of Japanese culture with traditional performances, food stalls, cultural demonstrations, and interactive activities. Our members got to experience authentic Japanese festivals right here in Nairobi. It was an incredible opportunity to immerse ourselves in Japanese traditions and connect with the wider Japanese community in Kenya!</p>
-            </div>
-        </div>
-    </div>
-    <hr class="month-divider">
-
-    <!-- Other Successful Events -->
-    <div class="month-section-2025">
-        <div class="month-header">
-          <h3>🌟 More Amazing Events</h3>
-          <span class="month-tag">Building Momentum</span>
-        </div>
-        <div class="month-content-2025">
-            <div class="event-banner chiq-banner">
-              <h4>ChiQ Restaurant Collaboration</h4>
-            </div>
-            <div class="month-text">
-              <p><strong>🍱 ChiQ Restaurant Event:</strong> Our collaboration with ChiQ Restaurant was a hit! Members enjoyed authentic Japanese dining and learned about traditional food preparation methods.</p>
-            </div>
-            
-            <div class="event-banner sushi-banner">
-              <h4>Sushi Exhibition & Workshop</h4>
-            </div>
-            <div class="month-text">
-              <p><strong>🍣 Sushi Exhibition:</strong> We showcased the art of sushi-making, giving members hands-on experience with this iconic Japanese culinary tradition. Everyone loved learning the techniques!</p>
-            </div>
-        </div>
-    </div>
-    <hr class="month-divider">
-
-  </section>
-
-<!-- Style to make the layout look good -->
-<style>
-    .section {
-        padding: 20px;
-        margin: 0 auto;
-        max-width: 1200px;
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in-visible');
     }
+  });
+}, observerOptions);
 
-    .month-section {
-        margin-bottom: 40px;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        border-radius: 1rem;
-        border: 1px solid rgba(243, 234, 229, 0.3);
-    }
+// Observe all sections
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.section, .month-section');
+  sections.forEach(section => {
+    section.classList.add('fade-in');
+    observer.observe(section);
+  });
+});
 
-    .month-content {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
+// Add scrolled class to nav on scroll & update progress bar
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 100) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+  
+  // Update scroll progress indicator
+  const scrollProgress = document.querySelector('.scroll-progress');
+  const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / windowHeight) * 100;
+  if (scrollProgress) {
+    scrollProgress.style.width = scrolled + '%';
+  }
+});
 
-    .month-image {
-        width: 200px;
-        height: 200px;
-        margin-right: 0;
-        object-fit: cover;
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    
+    // Remove active class from all nav links
+    document.querySelectorAll('.nav__links a').forEach(link => {
+      link.classList.remove('active');
+    });
+    
+    // Add active class to clicked link
+    if (this.classList.contains('nav__links')) {
+      this.classList.add('active');
     }
     
-    .month-section h3 {
-        color: var(--text-dark);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        border-bottom: 3px solid var(--primary-color);
-        display: inline-block;
-        padding-bottom: 5px;
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
+  });
+});
 
-    .month-divider {
-        border: none;
-        height: 2px;
-        background: linear-gradient(to right, transparent, var(--primary-color), transparent);
-        margin: 20px 0;
-        position: relative;
-    }
+// Highlight active section in navigation
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav__links a');
+
+function highlightNav() {
+  let scrollPosition = window.scrollY + 100;
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    const sectionId = section.getAttribute('id');
     
-    .month-divider::after {
-        content: '✦';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 0 10px;
-        color: var(--text-dark);
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${sectionId}`) {
+          link.classList.add('active');
+        }
+      });
     }
+  });
+}
 
-    h3 {
-        font-size: 24px;
-        margin-bottom: 10px;
+window.addEventListener('scroll', highlightNav);
+
+// Animated Counter for Stats
+function animateCounter(element) {
+  const target = parseInt(element.getAttribute('data-target'));
+  const duration = 2000; // 2 seconds
+  const increment = target / (duration / 16); // 60fps
+  let current = 0;
+  
+  const updateCounter = () => {
+    current += increment;
+    if (current < target) {
+      element.textContent = Math.floor(current);
+      requestAnimationFrame(updateCounter);
+    } else {
+      element.textContent = target;
     }
-</style>
+  };
+  
+  updateCounter();
+}
+
+// Observe stat cards for animation
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const statNumbers = entry.target.querySelectorAll('.stat-number');
+      statNumbers.forEach(stat => {
+        if (stat.textContent === '0') {
+          animateCounter(stat);
+        }
+      });
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+// Observe the stats container
+document.addEventListener('DOMContentLoaded', () => {
+  const statsContainer = document.querySelector('.stats-container');
+  if (statsContainer) {
+    statsObserver.observe(statsContainer);
+  }
+});
 
 
-  <!-- Gallery Section -->
-  <!-- 2025 Section -->
-  <section id="what-we-did" class="section">
-    <h2>2024 Highlights</h2>
-    <p>2024 has been one for the books! We organized exciting new activities, eco-friendly camping initiatives, and hosted various community-building events. Thank you to all who joined us in making these moments unforgettable!</p>
+// Add visual feedback on button clicks
+document.querySelectorAll('button, .btn').forEach(button => {
+  button.addEventListener('click', function() {
+    this.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      this.style.transform = '';
+    }, 150);
+  });
+});
+
+// Easter Egg - Konami Code (↑ ↑ ↓ ↓ ← → ← → B A)
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
+
+document.addEventListener('keydown', (e) => {
+  const key = e.key.toLowerCase();
+  
+  if (key === konamiCode[konamiIndex] || e.key === konamiCode[konamiIndex]) {
+    konamiIndex++;
     
-    <!-- April Section -->
-    <div class="month-section">
-        <h3>April</h3>
-        <div class="month-content">
-            <img src="assets/photo (33).jpg" alt="April activities" class="month-image">
-            <p>In April, the Japanese Club held weekly meetings every Friday, where members engaged in a variety of fun and educational activities. We kicked off with exciting <strong>anime Kahoots</strong>, where participants tested their anime knowledge in a lively quiz format. We also took our first steps in learning basic Japanese greetings and explored the art of <strong>origami</strong>.</p>
-        </div>
-    </div>
-    <hr class="month-divider">
+    if (konamiIndex === konamiCode.length) {
+      activateEasterEgg();
+      konamiIndex = 0;
+    }
+  } else {
+    konamiIndex = 0;
+  }
+});
 
-    <!-- May Section -->
-    <div class="month-section">
-        <h3>May</h3>
-        <div class="month-content">
-            <img src="assets/photo (31).jpg" alt="May webinar" class="month-image">
-            <p>In May, we hosted an enriching <strong>online webinar</strong> with Diana, who connected us to two prestigious Japanese schools in Tokyo. Diana provided valuable insights into living and studying in Japan, including the <strong>visa process</strong>, available visa types, the job market, and her personal experiences in Japan. The principals of the two schools also joined the session to discuss the learning experiences at their institutions.</p>
-        </div>
-    </div>
-    <hr class="month-divider">
-
-    <!-- June Section -->
-    <div class="month-section">
-        <h3>June</h3>
-        <div class="month-content">
-            <img src="assets/photo (30).jpg" alt="June festival" class="month-image">
-            <p>June brought an exciting opportunity for our members as we attended the <strong>International Cultural Festival</strong> at the Nairobi Museum, where we experienced not only Japanese culture but also a variety of other cultures from around the world. We also continued with our regular Friday meetings, fostering a balance between learning and fun.</p>
-        </div>
-    </div>
-    <hr class="month-divider">
-
-    <!-- July Section -->
-    <div class="month-section">
-        <h3>July</h3>
-        <div class="month-content">
-            <img src="assets/photo (28).jpg" alt="July embassy visit" class="month-image">
-            <p>In July, the Japanese Club visited the <strong>Japan Embassy</strong>, where we learned about special parts of Japanese culture through embassy video essays. Members practiced <strong>calligraphy</strong>, wrote their names in Japanese, wore traditional Japanese clothing, and learned how to make <strong>origami cranes</strong> and <strong>frogs</strong>.</p>
-        </div>
-    </div>
-    <hr class="month-divider">
-
-    <div class="month-section">
-      <h3>September</h3>
-      <div class="month-content">
-          <img src="assets/photo (10).jpg" alt="September embassy exposure" class="month-image">
-          <p>September was an eventful month! We kicked off with a <strong>Club Exposure event</strong> where the Japan Embassy partnered with us to bring authentic <strong>Japanese food displays</strong> to Strathmore. This event also featured educational talks on <strong>scholarships</strong> and allowed attendees to try on traditional Japanese attire. The <strong>Chinese Club</strong> joined us for a team-building event at <strong>Karura Forest</strong>, where we enjoyed a fun-filled <strong>21 km walk</strong>. The month concluded with a trip to the Japan Embassy for the <strong>Short Movie Festival</strong>, where we watched a Japanese comedy film.</p>
-      </div>
-  </div>
-  <hr class="month-divider">
-
-  <!-- October Section -->
-  <div class="month-section">
-      <h3>October</h3>
-      <div class="month-content">
-          <img src="assets/photo (16).jpg" alt="October ChiQ restaurant partnership" class="month-image">
-          <p>October was a milestone month as we secured a partnership with <strong>ChiQ Restaurant</strong> and began plans to bring their authentic Japanese food to Strathmore. We also met with <strong>foreign exchange students</strong> from <strong>Akita University</strong> and went on a scenic <strong>hike at Karura Forest</strong>. Our weekly meetings continued, and members attended the second day of the <strong>Japan Embassy's 3-day Movie Festival</strong>, enjoying a screening and tasting <strong>tofu</strong> after the second film. Later in the month, a group of us attended the <strong>Halloween party</strong> hosted by ChiQ Restaurant at <strong>Sarit Center</strong>.</p>
-      </div>
-  </div>
-  <hr class="month-divider">
-
-  <!-- November Section -->
-  <div class="month-section">
-      <h3>November</h3>
-      <div class="month-content">
-          <img src="assets/photo (17).jpg" alt="November language week" class="month-image">
-          <p>In November, we hosted a <strong>Language Week</strong> in partnership with <strong>Sticker Hive</strong>, where we sold unique Japanese-themed stickers on Wednesday and Thursday. On Thursday, the <strong>Japan Embassy</strong> joined us for an interactive cultural experience, featuring activities like <strong>calligraphy</strong>, <strong>origami</strong>, trying on <strong>traditional clothing</strong>, and playing <strong>Japanese games</strong>. It was a fantastic way for members and newcomers alike to immerse themselves in Japanese culture!</p>
-      </div>
-  </div>
-  <hr class="month-divider">
-
-</section>
-
-  <section id="gallery" class="section">
-    <h2>Our Gallery</h2>
-    <p>Explore our collection of moments captured throughout the year!</p>
-
-    <!-- Gallery Container -->
-    <div class="gallery-container">
-        <!-- Individual Gallery Item -->
-        <div class="gallery-item">
-            <img src="assets/photo (1).jpg" alt="Gallery image 1" class="gallery-image" onclick="openLightbox('assets/photo (1).jpg')">
-        </div>
-        <div class="gallery-item">
-            <img src="assets/photo (2).jpg" alt="Gallery image 2" class="gallery-image" onclick="openLightbox('assets/photo (2).jpg')">
-        </div>
-        <div class="gallery-item">
-            <img src="assets/photo (3).jpg" alt="Gallery image 3" class="gallery-image" onclick="openLightbox('assets/photo (3).jpg')">
-        </div>
-        <div class="gallery-item">
-          <img src="assets/photo (4).jpg" alt="Gallery image 4" class="gallery-image" onclick="openLightbox('assets/photo (4).jpg')">
-      </div>
-      <div class="gallery-item">
-        <img src="assets/photo (5).jpg" alt="Gallery image 5" class="gallery-image" onclick="openLightbox('assets/photo (5).jpg')">
-    </div>
-    <div class="gallery-item">
-      <img src="assets/photo (6).jpg" alt="Gallery image 6" class="gallery-image" onclick="openLightbox('assets/photo (6).jpg')">
-  </div>
-  <div class="gallery-item">
-    <img src="assets/photo (7).jpg" alt="Gallery image 7" class="gallery-image" onclick="openLightbox('assets/photo (7).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (8).jpg" alt="Gallery image 8" class="gallery-image" onclick="openLightbox('assets/photo (8).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (9).jpg" alt="Gallery image 9" class="gallery-image" onclick="openLightbox('assets/photo (9).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (10).jpg" alt="Gallery image 10" class="gallery-image" onclick="openLightbox('assets/photo (10).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (11).jpg" alt="Gallery image 11" class="gallery-image" onclick="openLightbox('assets/photo (11).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (12).jpg" alt="Gallery image 12" class="gallery-image" onclick="openLightbox('assets/photo (12).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (13).jpg" alt="Gallery image 13" class="gallery-image" onclick="openLightbox('assets/photo (13).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (14).jpg" alt="Gallery image 14" class="gallery-image" onclick="openLightbox('assets/photo (14).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (15).jpg" alt="Gallery image 15" class="gallery-image" onclick="openLightbox('assets/photo (15).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (16).jpg" alt="Gallery image 16" class="gallery-image" onclick="openLightbox('assets/photo (16).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (17).jpg" alt="Gallery image 17" class="gallery-image" onclick="openLightbox('assets/photo (17).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (18).jpg" alt="Gallery image 18" class="gallery-image" onclick="openLightbox('assets/photo (18).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (19).jpg" alt="Gallery image 19" class="gallery-image" onclick="openLightbox('assets/photo (19).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (20).jpg" alt="Gallery image 20" class="gallery-image" onclick="openLightbox('assets/photo (20).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (21).jpg" alt="Gallery image 21" class="gallery-image" onclick="openLightbox('assets/photo (21).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (22).jpg" alt="Gallery image 22" class="gallery-image" onclick="openLightbox('assets/photo (22).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (23).jpg" alt="Gallery image 23" class="gallery-image" onclick="openLightbox('assets/photo (23).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (24).jpg" alt="Gallery image 24" class="gallery-image" onclick="openLightbox('assets/photo (24).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (25).jpg" alt="Gallery image 25" class="gallery-image" onclick="openLightbox('assets/photo (25).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (26).jpg" alt="Gallery image 26" class="gallery-image" onclick="openLightbox('assets/photo (26).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (27).jpg" alt="Gallery image 27" class="gallery-image" onclick="openLightbox('assets/photo (27).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (28).jpg" alt="Gallery image 28" class="gallery-image" onclick="openLightbox('assets/photo (28).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (29).jpg" alt="Gallery image 29" class="gallery-image" onclick="openLightbox('assets/photo (29).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (30).jpg" alt="Gallery image 30" class="gallery-image" onclick="openLightbox('assets/photo (30).jpg')">
-</div>
-<div class="gallery-item">
-  <img src="assets/photo (31).jpg" alt="Gallery image 31" class="gallery-image" onclick="openLightbox('assets/photo (31).jpg')">
-</div> 
-<div class="gallery-item">
-  <img src="assets/photo (32).jpg" alt="Gallery image 32" class="gallery-image" onclick="openLightbox('assets/photo (32).jpg')">
-</div>  
-<div class="gallery-item">
-  <img src="assets/photo (33).jpg" alt="Gallery image 33" class="gallery-image" onclick="openLightbox('assets/photo (33).jpg')">
-</div>
-    </div>
-
-    <!-- Lightbox Fullscreen Image -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" class="lightbox-img" src="" alt="Full Image" />
-    <span class="close-btn" onclick="closeLightbox()">×</span>
-  </div>
-</section>
-
-  <!-- Join Us / Contact Section -->
-  <section class="join-section">
-    <div class="join-content">
-      <h2 class="join-title">Ready to Join Our Journey?</h2>
-      <p class="join-subtitle">Experience Japanese culture with us! From anime to traditional arts, we have something for everyone.</p>
+function activateEasterEgg() {
+  // Create confetti effect
+  const colors = ['#f3eae5', '#2c2724', '#FFD700', '#FF69B4', '#00CED1'];
+  
+  for (let i = 0; i < 100; i++) {
+    setTimeout(() => {
+      const confetti = document.createElement('div');
+      confetti.style.position = 'fixed';
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.top = '-50px';
+      confetti.style.width = '10px';
+      confetti.style.height = '10px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.borderRadius = '50%';
+      confetti.style.zIndex = '99999';
+      confetti.style.pointerEvents = 'none';
+      confetti.textContent = ['🌸', '🎌', '🗾', '🍜', '🍣'][Math.floor(Math.random() * 5)];
+      confetti.style.fontSize = '20px';
       
-      <div class="join-benefits">
-        <div class="benefit-item">
-          <div class="benefit-icon">🎓</div>
-          <h4>Learn Japanese</h4>
-          <p>Basic language skills and cultural insights</p>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">🎨</div>
-          <h4>Traditional Arts</h4>
-          <p>Calligraphy, origami, and more</p>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">🍜</div>
-          <h4>Food Events</h4>
-          <p>Sushi, matcha, and culinary experiences</p>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">🎬</div>
-          <h4>Anime & Culture</h4>
-          <p>Movie nights and discussions</p>
-        </div>
-      </div>
+      document.body.appendChild(confetti);
       
-      <div class="join-cta">
-        <button class="join-btn primary-btn">
-          <i class="ri-user-add-line"></i> Join the Club
-        </button>
-        <button class="join-btn secondary-btn">
-          <i class="ri-mail-line"></i> Contact Us
-        </button>
-      </div>
+      const animation = confetti.animate([
+        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+        { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 720 - 360}deg)`, opacity: 0 }
+      ], {
+        duration: 3000 + Math.random() * 2000,
+        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+      });
       
-      <div class="social-links">
-        <h3>Connect With Us</h3>
-        <div class="social-icons">
-          <a href="#" class="social-icon" aria-label="Instagram">
-            <i class="ri-instagram-line"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="Twitter">
-            <i class="ri-twitter-x-line"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="Facebook">
-            <i class="ri-facebook-circle-line"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="WhatsApp">
-            <i class="ri-whatsapp-line"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="Email">
-            <i class="ri-mail-line"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+      animation.onfinish = () => confetti.remove();
+    }, i * 30);
+  }
+  
+  // Show special message
+  const message = document.createElement('div');
+  message.innerHTML = '<h2>🎉 おめでとう！ 🎉</h2><p>You found the secret!</p>';
+  message.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #2c2724, #1a1715);
+    color: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    text-align: center;
+    z-index: 999999;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: bounceIn 0.5s ease;
+  `;
+  
+  document.body.appendChild(message);
+  
+  setTimeout(() => {
+    message.style.animation = 'fadeOut 0.5s ease';
+    setTimeout(() => message.remove(), 500);
+  }, 3000);
+}
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-    <i class="ri-arrow-up-line"></i>
-  </button>
+// Add CSS animations for easter egg
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes bounceIn {
+    0% { transform: translate(-50%, -50%) scale(0); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+  }
+  
+  @keyframes fadeOut {
+    to { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  }
+`;
+document.head.appendChild(style);
 
-  <!-- Footer with Cycling Quotes -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="quote-container">
-        <h3>Japanese Wisdom</h3>
-        <p id="quote-text" class="quote-text"></p>
-        <p id="quote-translation" class="quote-translation"></p>
-      </div>
-      <div class="footer-info">
-        <p>&copy; 2024 Japanese Club at Strathmore University. All rights reserved.</p>
-        <p>日本文化を愛する全ての人へ (To all who love Japanese culture)</p>
-      </div>
-    </div>
-  </footer>
+// Back to Top Button functionality
+const backToTopButton = document.getElementById('back-to-top');
 
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <script src="main.js"></script>
-</body>
-</html>
+if (backToTopButton) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add('show');
+    } else {
+      backToTopButton.classList.remove('show');
+    }
+  });
+
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
