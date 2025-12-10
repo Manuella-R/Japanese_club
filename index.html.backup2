@@ -306,7 +306,121 @@
 </style>
 
 
-  
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <h2>Our Gallery</h2>
+    <p>Explore our collection of moments captured throughout the year!</p>
+
+    <!-- Gallery Container -->
+    <div class="gallery-container">
+        <!-- Individual Gallery Item -->
+        <div class="gallery-item">
+            <img src="assets/photo (1).jpg" alt="Gallery image 1" class="gallery-image" onclick="openLightbox('assets/photo (1).jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="assets/photo (2).jpg" alt="Gallery image 2" class="gallery-image" onclick="openLightbox('assets/photo (2).jpg')">
+        </div>
+        <div class="gallery-item">
+            <img src="assets/photo (3).jpg" alt="Gallery image 3" class="gallery-image" onclick="openLightbox('assets/photo (3).jpg')">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/photo (4).jpg" alt="Gallery image 4" class="gallery-image" onclick="openLightbox('assets/photo (4).jpg')">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/photo (5).jpg" alt="Gallery image 5" class="gallery-image" onclick="openLightbox('assets/photo (5).jpg')">
+    </div>
+    <div class="gallery-item">
+      <img src="assets/photo (6).jpg" alt="Gallery image 6" class="gallery-image" onclick="openLightbox('assets/photo (6).jpg')">
+  </div>
+  <div class="gallery-item">
+    <img src="assets/photo (7).jpg" alt="Gallery image 7" class="gallery-image" onclick="openLightbox('assets/photo (7).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (8).jpg" alt="Gallery image 8" class="gallery-image" onclick="openLightbox('assets/photo (8).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (9).jpg" alt="Gallery image 9" class="gallery-image" onclick="openLightbox('assets/photo (9).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (10).jpg" alt="Gallery image 10" class="gallery-image" onclick="openLightbox('assets/photo (10).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (11).jpg" alt="Gallery image 11" class="gallery-image" onclick="openLightbox('assets/photo (11).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (12).jpg" alt="Gallery image 12" class="gallery-image" onclick="openLightbox('assets/photo (12).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (13).jpg" alt="Gallery image 13" class="gallery-image" onclick="openLightbox('assets/photo (13).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (14).jpg" alt="Gallery image 14" class="gallery-image" onclick="openLightbox('assets/photo (14).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (15).jpg" alt="Gallery image 15" class="gallery-image" onclick="openLightbox('assets/photo (15).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (16).jpg" alt="Gallery image 16" class="gallery-image" onclick="openLightbox('assets/photo (16).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (17).jpg" alt="Gallery image 17" class="gallery-image" onclick="openLightbox('assets/photo (17).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (18).jpg" alt="Gallery image 18" class="gallery-image" onclick="openLightbox('assets/photo (18).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (19).jpg" alt="Gallery image 19" class="gallery-image" onclick="openLightbox('assets/photo (19).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (20).jpg" alt="Gallery image 20" class="gallery-image" onclick="openLightbox('assets/photo (20).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (21).jpg" alt="Gallery image 21" class="gallery-image" onclick="openLightbox('assets/photo (21).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (22).jpg" alt="Gallery image 22" class="gallery-image" onclick="openLightbox('assets/photo (22).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (23).jpg" alt="Gallery image 23" class="gallery-image" onclick="openLightbox('assets/photo (23).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (24).jpg" alt="Gallery image 24" class="gallery-image" onclick="openLightbox('assets/photo (24).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (25).jpg" alt="Gallery image 25" class="gallery-image" onclick="openLightbox('assets/photo (25).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (26).jpg" alt="Gallery image 26" class="gallery-image" onclick="openLightbox('assets/photo (26).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (27).jpg" alt="Gallery image 27" class="gallery-image" onclick="openLightbox('assets/photo (27).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (28).jpg" alt="Gallery image 28" class="gallery-image" onclick="openLightbox('assets/photo (28).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (29).jpg" alt="Gallery image 29" class="gallery-image" onclick="openLightbox('assets/photo (29).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (30).jpg" alt="Gallery image 30" class="gallery-image" onclick="openLightbox('assets/photo (30).jpg')">
+</div>
+<div class="gallery-item">
+  <img src="assets/photo (31).jpg" alt="Gallery image 31" class="gallery-image" onclick="openLightbox('assets/photo (31).jpg')">
+</div> 
+<div class="gallery-item">
+  <img src="assets/photo (32).jpg" alt="Gallery image 32" class="gallery-image" onclick="openLightbox('assets/photo (32).jpg')">
+</div>  
+<div class="gallery-item">
+  <img src="assets/photo (33).jpg" alt="Gallery image 33" class="gallery-image" onclick="openLightbox('assets/photo (33).jpg')">
+</div>
+    </div>
+
+    <!-- Lightbox Fullscreen Image -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Full Image" />
+    <span class="close-btn" onclick="closeLightbox()">×</span>
+  </div>
+</section>
 
 <!-- What We Did This Year Section -->
   <section id="what-we-did" class="section">
@@ -500,7 +614,8 @@
   </div>
 </section>
 
-<!-- Trivia Section -->
+
+  <!-- Trivia Section -->
   <section id="trivia" class="section">
     <h2>🎲 Japanese Fun Facts</h2>
     <p class="trivia-intro">Discover fascinating facts about Japan!</p>
@@ -563,7 +678,8 @@
     </div>
   </section>
 
-  <!-- Join Us / Contact Section -->
+
+<!-- Join Us / Contact Section -->
   <section class="join-section">
     <div class="join-content">
       <h2 class="join-title">Ready to Join Our Journey?</h2>
