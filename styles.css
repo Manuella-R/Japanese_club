@@ -2161,6 +2161,11 @@ img {
   img:hover {
     transform: none !important;
   }
+  
+  /* Hide event banners on mobile */
+  .event-banner {
+    display: none !important;
+  }
 }
 
 /* Small phones: 320px - 480px */
