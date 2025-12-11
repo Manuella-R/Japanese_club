@@ -3,37 +3,153 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabBtns = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
   
-  tabBtns.forEach(btn => {
+  function switchTab(targetTab) {
+    // Remove active class from all buttons and contents
+    tabBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+      b.setAttribute('tabindex', '-1');
+    });
+    tabContents.forEach(content => {
+      content.classList.remove('active');
+    });
+    
+    // Find and activate the target button
+    const targetBtn = document.querySelector(`[data-tab="${targetTab}"]`);
+    if (targetBtn) {
+      targetBtn.classList.add('active');
+      targetBtn.setAttribute('aria-selected', 'true');
+      targetBtn.setAttribute('tabindex', '0');
+    }
+    
+    // Activate the target content
+    const targetContent = document.getElementById(`tab-${targetTab}`);
+    if (targetContent) {
+      targetContent.classList.add('active');
+    }
+    
+    // Smooth scroll to the journey section when switching tabs (only if not in view)
+    const journeySection = document.getElementById('journey-section');
+    if (journeySection) {
+      const rect = journeySection.getBoundingClientRect();
+      const isInView = rect.top >= 0 && rect.top <= window.innerHeight * 0.5;
+      
+      if (!isInView) {
+        // Instant scroll on mobile, smooth on desktop
+        const scrollBehavior = window.innerWidth <= 768 ? 'auto' : 'smooth';
+        setTimeout(() => {
+          journeySection.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
+        }, 100);
+      }
+    }
+    
+    // Re-trigger stat animations for 2025 tab
+    if (targetTab === '2025' && targetContent) {
+      const statsContainer = targetContent.querySelector('.stats-container');
+      if (statsContainer) {
+        const statNumbers = statsContainer.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+          const target = parseInt(stat.getAttribute('data-target'));
+          stat.textContent = '0';
+          // Trigger animation after a short delay
+          setTimeout(() => {
+            animateCounter(stat);
+          }, 300);
+        });
+      }
+    }
+  }
+  
+  // Add click listeners to tab buttons
+  tabBtns.forEach((btn, index) => {
+    // Add ARIA attributes
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', btn.classList.contains('active') ? 'true' : 'false');
+    
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
-      
-      // Remove active class from all buttons and contents
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabContents.forEach(content => content.classList.remove('active'));
-      
-      // Add active class to clicked button and corresponding content
-      btn.classList.add('active');
-      document.getElementById(`tab-${targetTab}`).classList.add('active');
+      switchTab(targetTab);
     });
+    
+    // Add keyboard navigation
+    btn.addEventListener('keydown', (e) => {
+      let newIndex = index;
+      
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        newIndex = index > 0 ? index - 1 : tabBtns.length - 1;
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        newIndex = index < tabBtns.length - 1 ? index + 1 : 0;
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        newIndex = 0;
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        newIndex = tabBtns.length - 1;
+      } else {
+        return;
+      }
+      
+      tabBtns[newIndex].focus();
+      const targetTab = tabBtns[newIndex].getAttribute('data-tab');
+      switchTab(targetTab);
+    });
+  });
+  
+  // Add ARIA attributes to tab contents
+  tabContents.forEach(content => {
+    content.setAttribute('role', 'tabpanel');
   });
 });
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle with enhancements
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
 
 // Toggle the "open" class when the menu button is clicked
 menuBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
   navLinks.classList.toggle("open");
   const isOpen = navLinks.classList.contains("open");
   menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+  
+  // Prevent body scroll when menu is open
+  if (isOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
 });
 
 // Close the mobile menu when any nav link is clicked
 navLinks.addEventListener("click", (e) => {
-  navLinks.classList.remove("open");
-  menuBtnIcon.setAttribute("class", "ri-menu-line");
+  if (e.target.tagName === 'A') {
+    navLinks.classList.remove("open");
+    menuBtnIcon.setAttribute("class", "ri-menu-line");
+    document.body.style.overflow = '';
+  }
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", (e) => {
+  if (navLinks.classList.contains("open") && 
+      !navLinks.contains(e.target) && 
+      !menuBtn.contains(e.target)) {
+    navLinks.classList.remove("open");
+    menuBtnIcon.setAttribute("class", "ri-menu-line");
+    document.body.style.overflow = '';
+  }
+});
+
+// Close menu on escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navLinks.classList.contains("open")) {
+    navLinks.classList.remove("open");
+    menuBtnIcon.setAttribute("class", "ri-menu-line");
+    document.body.style.overflow = '';
+  }
 });
 
 // ScrollReveal configuration for animations
@@ -117,143 +233,45 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Anime Character Quiz
-const quizQuestions = [
-  {
-    question: "How do you approach challenges?",
-    options: {
-      A: "Head-on with determination!",
-      B: "With careful planning and strategy",
-      C: "By supporting others and working together",
-      D: "With creativity and unconventional thinking"
-    }
-  },
-  {
-    question: "What's your ideal way to spend a weekend?",
-    options: {
-      A: "Training or pursuing your goals",
-      B: "Reading or learning something new",
-      C: "Hanging out with friends",
-      D: "Exploring new places or trying new things"
-    }
-  },
-  {
-    question: "Which trait describes you best?",
-    options: {
-      A: "Brave and passionate",
-      B: "Intelligent and analytical",
-      C: "Kind and supportive",
-      D: "Mysterious and unique"
-    }
-  }
-];
-
-const characterResults = {
-  'AAA': { name: "The Shonen Protagonist", desc: "You're brave, determined, and never give up! Like Naruto or Luffy, you inspire others with your passion!" },
-  'AAB': { name: "The Determined Hero", desc: "Strong-willed with strategic thinking! You combine courage with smarts, like Tanjiro from Demon Slayer!" },
-  'AAC': { name: "The Supportive Leader", desc: "You're brave but also care deeply about your friends! Like Deku from My Hero Academia!" },
-  'BBB': { name: "The Strategist", desc: "Brilliant and analytical! You're like Light Yagami or Senku - always thinking three steps ahead!" },
-  'BBC': { name: "The Wise Mentor", desc: "Smart and caring! You guide others with wisdom and kindness, like Kakashi or Iroh!" },
-  'CCC': { name: "The True Friend", desc: "Loyal and supportive! You're the heart of your friend group, like Hinata or Todoroki's kind side!" },
-  'DDD': { name: "The Mysterious Wild Card", desc: "Unpredictable and fascinating! Like Gojo or Killua, you keep everyone guessing!" },
-  'default': { name: "The Balanced Character", desc: "You have a perfect mix of traits! Like Saitama - surprisingly deep with a unique perspective!" }
-};
-
-let currentQuestion = 0;
-let answers = [];
-
-function startQuiz() {
-  currentQuestion = 0;
-  answers = [];
-  showQuestion();
-  document.getElementById('quiz-btn').style.display = 'none';
-}
-
-function showQuestion() {
-  const questionEl = document.getElementById('quiz-question');
-  const optionsEl = document.getElementById('quiz-options');
-  const resultEl = document.getElementById('quiz-result');
-  
-  resultEl.style.display = 'none';
-  
-  if (currentQuestion < quizQuestions.length) {
-    questionEl.textContent = quizQuestions[currentQuestion].question;
-    optionsEl.style.display = 'flex';
-    
-    // Update option labels
-    const optionBtns = document.querySelectorAll('.quiz-option');
-    optionBtns.forEach(btn => {
-      const answer = btn.getAttribute('data-answer');
-      btn.textContent = `${answer}: ${quizQuestions[currentQuestion].options[answer]}`;
-    });
-  } else {
-    showResult();
-  }
-}
-
-function answerQuestion(answer) {
-  answers.push(answer);
-  currentQuestion++;
-  showQuestion();
-}
-
-function showResult() {
-  const questionEl = document.getElementById('quiz-question');
-  const optionsEl = document.getElementById('quiz-options');
-  const resultEl = document.getElementById('quiz-result');
-  const btnEl = document.getElementById('quiz-btn');
-  
-  optionsEl.style.display = 'none';
-  questionEl.textContent = "Your Result:";
-  
-  const answerKey = answers.join('');
-  const result = characterResults[answerKey] || characterResults['default'];
-  
-  document.getElementById('result-character').textContent = result.name;
-  document.getElementById('result-description').textContent = result.desc;
-  resultEl.style.display = 'block';
-  
-  btnEl.textContent = 'Retake Quiz';
-  btnEl.style.display = 'block';
-}
-
-// Quiz event listeners
-document.addEventListener('DOMContentLoaded', () => {
-  const quizBtn = document.getElementById('quiz-btn');
-  if (quizBtn) {
-    quizBtn.addEventListener('click', startQuiz);
-  }
-  
-  const quizOptions = document.querySelectorAll('.quiz-option');
-  quizOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      answerQuestion(this.getAttribute('data-answer'));
-    });
-  });
-});
+// Quiz redirect is handled inline in HTML with onclick
+// No JavaScript needed for quiz functionality - redirects to quiz/index.html
 
 // Add scroll animations for sections
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
+// Disable scroll animations on mobile devices
+const isMobile = window.innerWidth <= 768;
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in-visible');
-    }
-  });
-}, observerOptions);
+if (!isMobile) {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
 
-// Observe all sections
-document.addEventListener('DOMContentLoaded', () => {
-  const sections = document.querySelectorAll('.section, .month-section');
-  sections.forEach(section => {
-    section.classList.add('fade-in');
-    observer.observe(section);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in-visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections (only on desktop)
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.section, .month-section');
+    sections.forEach(section => {
+      section.classList.add('fade-in');
+      observer.observe(section);
+    });
   });
-});
+} else {
+  // On mobile, just show everything immediately
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.section, .month-section');
+    sections.forEach(section => {
+      section.style.opacity = '1';
+      section.style.transform = 'translateY(0)';
+    });
+  });
+}
 
 // Add scrolled class to nav on scroll & update progress bar
 window.addEventListener('scroll', () => {
@@ -273,10 +291,26 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Smooth scroll for anchor links
+// Smooth scroll for anchor links with mobile menu close
+const isMobileScroll = window.innerWidth <= 768;
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
+    
+    // Close mobile menu if open
+    const navLinks = document.getElementById('nav-links');
+    const menuBtn = document.getElementById('menu-btn');
+    if (navLinks && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      if (menuBtn) {
+        const menuBtnIcon = menuBtn.querySelector('i');
+        if (menuBtnIcon) {
+          menuBtnIcon.setAttribute('class', 'ri-menu-line');
+        }
+      }
+      document.body.style.overflow = '';
+    }
     
     // Remove active class from all nav links
     document.querySelectorAll('.nav__links a').forEach(link => {
@@ -290,28 +324,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      // Add offset for fixed nav
+      const navHeight = document.querySelector('nav').offsetHeight;
+      const targetPosition = target.offsetTop - navHeight;
+      
+      // Instant scroll on mobile, smooth on desktop
+      window.scrollTo({
+        top: targetPosition,
+        behavior: isMobileScroll ? 'auto' : 'smooth'
       });
     }
   });
 });
 
 // Highlight active section in navigation
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav__links a');
+const navSections = document.querySelectorAll('section[id]');
+const navLinksHighlight = document.querySelectorAll('.nav__links a');
 
 function highlightNav() {
   let scrollPosition = window.scrollY + 100;
   
-  sections.forEach(section => {
+  navSections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
     const sectionId = section.getAttribute('id');
     
     if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      navLinks.forEach(link => {
+      navLinksHighlight.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${sectionId}`) {
           link.classList.add('active');
@@ -326,6 +365,13 @@ window.addEventListener('scroll', highlightNav);
 // Animated Counter for Stats
 function animateCounter(element) {
   const target = parseInt(element.getAttribute('data-target'));
+  
+  // Instant display on mobile, animated on desktop
+  if (window.innerWidth <= 768) {
+    element.textContent = target;
+    return;
+  }
+  
   const duration = 2000; // 2 seconds
   const increment = target / (duration / 16); // 60fps
   let current = 0;

@@ -101,13 +101,13 @@
 
   <!-- Journey Tabs Section -->
   <section id="journey-section" class="section section-journey">
-    <h2>🎌 Our Journey</h2>
-    <p class="section-intro">Explore our adventures through the years!</p>
+    <h2>🎌 Our Journey Through Time</h2>
+    <p class="section-intro">Explore our adventures and milestones across 2024 and 2025. From cultural events to community building, discover the story of the Japanese Club at Strathmore!</p>
     
     <!-- Tab Navigation -->
-    <div class="tab-navigation">
-      <button class="tab-btn active" data-tab="2025">2025 Journey</button>
-      <button class="tab-btn" data-tab="2024">2024 Highlights</button>
+    <div class="tab-navigation" role="tablist" aria-label="Journey timeline tabs">
+      <button class="tab-btn active" data-tab="2025" tabindex="0">2025 Journey</button>
+      <button class="tab-btn" data-tab="2024" tabindex="-1">2024 Highlights</button>
     </div>
     
     <!-- 2025 Tab Content -->
@@ -253,74 +253,12 @@
     </div>
     <hr class="month-divider">
 
-   <!-- Style to make the layout look good -->
-<style>
-    .section {
-        padding: 20px;
-        margin: 0 auto;
-        max-width: 1200px;
-    }
-
-    .month-section {
-        margin-bottom: 40px;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        border-radius: 1rem;
-        border: 1px solid rgba(243, 234, 229, 0.3);
-    }
-
-    .month-content {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .month-image {
-        width: 200px;
-        height: 200px;
-        margin-right: 0;
-        object-fit: cover;
-    }
-    
-    .month-section h3 {
-        color: var(--text-dark);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        border-bottom: 3px solid var(--primary-color);
-        display: inline-block;
-        padding-bottom: 5px;
-    }
-
-    .month-divider {
-        border: none;
-        height: 2px;
-        background: linear-gradient(to right, transparent, var(--primary-color), transparent);
-        margin: 20px 0;
-        position: relative;
-    }
-    
-    .month-divider::after {
-        content: '✦';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 0 10px;
-        color: var(--text-dark);
-    }
-
-    h3 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-</style>
-
-
     </div>
     
     <!-- 2024 Tab Content -->
     <div class="tab-content" id="tab-2024">
+    <h3 class="tab-title">🌸 2024 Highlights - A Year to Remember</h3>
+    <p class="section-intro">2024 was an incredible year for the Japanese Club! From weekly meetings to partnerships and cultural events, we created lasting memories and grew our community. Relive our journey month by month!</p>
     
     <!-- April Section -->
     <div class="month-section">
@@ -642,22 +580,11 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="quiz-container">
-        <h3>🎭 Japanese Quiz: What Type of Anime Character Are You?</h3>
-        <p class="quiz-question" id="quiz-question">Click "Start Quiz" to discover your anime character type!</p>
+        <h3>🎮 The Chronicles of the Eternal Rain</h3>
+        <p class="quiz-question">Embark on an epic personality alignment test! Discover your character archetype through an immersive RPG-style quiz experience.</p>
+        <p class="quiz-subtitle">✨ A fully interactive adventure awaits...</p>
         
-        <div class="quiz-options" id="quiz-options" style="display: none;">
-          <button class="quiz-option" data-answer="A">A</button>
-          <button class="quiz-option" data-answer="B">B</button>
-          <button class="quiz-option" data-answer="C">C</button>
-          <button class="quiz-option" data-answer="D">D</button>
-        </div>
-        
-        <div class="quiz-result" id="quiz-result" style="display: none;">
-          <h4 id="result-character"></h4>
-          <p id="result-description"></p>
-        </div>
-        
-        <button class="quiz-btn" id="quiz-btn">Start Quiz</button>
+        <button class="quiz-btn" id="quiz-btn" onclick="window.location.href='quiz/index.html'">Start Quiz Adventure</button>
       </div>
       <div class="footer-info">
         <p>&copy; 2024 Japanese Club at Strathmore University. All rights reserved.</p>
