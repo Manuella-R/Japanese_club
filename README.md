@@ -1,14 +1,12 @@
-# 🎌 Japanese Club at Strathmore University - Official Website
+# [🎌 Japanese Club at Strathmore University - Official Website](https://manuella-r.github.io/Japanese_club/)
 
-![Japanese Club Banner](assets/Japanclublogohd.jpg)
-
-## 🌸 About This Website
+## About This Website
 
 Welcome to the official website of the Japanese Club at Strathmore University! This is a vibrant, interactive platform showcasing our club's activities, events, and passion for Japanese culture.
 
-## ✨ Features & Highlights
+## Features & Highlights
 
-### 🎨 **Modern & Animated Design**
+### **Modern & Animated Design**
 - **Loading Screen**: Beautiful animated loading screen with Japanese text
 - **Scroll Progress Bar**: Visual indicator at the top showing scroll position
 - **Smooth Animations**: Scroll-triggered animations throughout the site
@@ -18,7 +16,7 @@ Welcome to the official website of the Japanese Club at Strathmore University! T
 - **Responsive Design**: Fully optimized for mobile, tablet, and desktop
 - **Dark/Light Contrast**: Beautiful color scheme with Japanese aesthetics
 
-### 🎯 **Interactive Elements**
+### **Interactive Elements**
 
 #### **Navigation**
 - Fixed navigation bar with glassmorphism effect on scroll
@@ -93,106 +91,7 @@ Welcome to the official website of the Japanese Club at Strathmore University! T
 - Smooth scroll to top
 - Gradient background with hover effects
 
-### 🎭 **Advanced Animations**
-
-1. **Loading Screen**: Spinning logo with progress bar
-2. **Page Load**: Smooth fade-in on initial load
-3. **Scroll Progress**: Real-time progress bar at top
-4. **Scroll Animations**: Elements fade in as you scroll
-5. **Hover Effects**: 
-   - Images zoom and brighten
-   - Cards lift and rotate
-   - Buttons pulse and glow
-   - Social icons spin 360°
-6. **Floating Elements**: 
-   - Subtle up/down motion on hero images
-   - Japanese characters floating in background
-7. **Text Animations**: Gradient text and shadow effects
-8. **Stat Counters**: Numbers count up when in view
-9. **Background Patterns**: Animated diagonal stripes
-10. **Trivia Carousel**: Smooth slide transitions
-11. **Button Feedback**: Visual scale effect on click
-
-### ⌨️ **Keyboard Shortcuts**
-
-- **ESC**: Close image lightbox
-- **Arrow Left**: Previous trivia fact
-- **Arrow Right**: Next trivia fact
-- **Mouse Wheel**: Smooth scrolling
-
-### 🎁 **Easter Egg**
-
-Try the Konami Code: `↑ ↑ ↓ ↓ ← → ← → B A`
-
-(Use arrow keys, then press 'B' and 'A' keys)
-
-Discover a special surprise with Japanese confetti! 🎉
-
-### 🌐 **Sections Overview**
-
-1. **Home**: Eye-catching hero with Japanese greeting, floating elements, and call-to-action
-2. **About Us**: Club mission and activities overview with decorative elements
-3. **2024 Highlights**: Complete timeline of 2024 events (April - November)
-4. **2025 Journey**: Current year activities, challenges, and future goals with animated stats
-5. **Gallery**: Comprehensive photo collection (33 photos) with lightbox
-6. **Trivia**: Interactive carousel with 6 fascinating Japanese facts
-7. **Join Us**: Call-to-action section with benefits and social media links
-8. **Footer**: Cycling Japanese wisdom quotes with translations
-
-## 🚀 **Performance & Optimization**
-
-- Fast loading times
-- Optimized images
-- Smooth 60fps animations
-- Minimal JavaScript for core functionality
-- CSS animations using GPU acceleration
-- Intersection Observer for efficient scroll detection
-
-## 🛠️ **Technologies Used**
-
-- **HTML5**: Semantic markup
-- **CSS3**: Advanced animations and modern layouts
-  - Flexbox & Grid
-  - CSS Variables
-  - Keyframe Animations
-  - Backdrop Filters
-  - Gradients & Shadows
-- **JavaScript**: 
-  - Vanilla JS (no frameworks)
-  - ScrollReveal library for animations
-  - Intersection Observer API
-  - Event delegation
-- **RemixIcon**: Icon library for visual elements
-
-## 📱 **Responsive Breakpoints**
-
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px  
-- **Desktop**: > 1024px
-
-## 🎨 **Color Scheme**
-
-- **Primary**: `#f3eae5` (Soft Beige)
-- **Dark**: `#2c2724` (Warm Black)
-- **White**: `#ffffff`
-- **Accents**: Gradient overlays and shadows
-
-## 📂 **File Structure**
-
-```
-japanese-club-website/
-├── index.html          # Main HTML file
-├── styles.css          # All styles and animations
-├── main.js            # Interactive functionality
-├── README.md          # This file
-└── assets/            # Images and media
-    ├── Japanclublogohd.jpg
-    ├── karurajp2023.jpg
-    ├── transJapanese.png
-    └── photo (1-33).jpg
-```
-
-## 🌟 **Special Features**
+## **Special Features**
 
 ### **Loading Experience**
 - Beautiful animated loading screen with Japanese text (日本クラブ)
@@ -202,12 +101,12 @@ japanese-club-website/
 
 ### **Trivia Carousel System**
 An interactive carousel showcasing 6 fascinating Japanese facts:
-1. 🤼 **Crying Sumo Contest** - A unique tradition for babies' good fortune
-2. 🚄 **Punctual Trains** - Average delay of only 54 seconds per year
-3. 🏔️ **Mount Fuji** - The summit is privately owned by a shrine
-4. 🍜 **Slurping is Polite** - Shows appreciation for the food
-5. 🏪 **55,000+ Convenience Stores** - Open 24/7 across Japan
-6. 🌸 **Cherry Blossom Forecast** - Official predictions for sakura viewing
+1.  **Crying Sumo Contest** - A unique tradition for babies' good fortune
+2.  **Punctual Trains** - Average delay of only 54 seconds per year
+3.  **Mount Fuji** - The summit is privately owned by a shrine
+4.  **Slurping is Polite** - Shows appreciation for the food
+5.  **55,000+ Convenience Stores** - Open 24/7 across Japan
+6.  **Cherry Blossom Forecast** - Official predictions for sakura viewing
 
 **Features:**
 - Auto-advances every 8 seconds
@@ -266,49 +165,20 @@ The footer displays Japanese wisdom that automatically cycles through 8 differen
 - Akita University (Foreign Exchange)
 - Sticker Hive
 
-## 🔧 **How to Use**
 
-1. **Clone or Download** the repository
-2. **Open** `index.html` in your browser
-3. **Navigate** using the menu or scroll
-4. **Click** images in the gallery for full view
-5. **Enjoy** the animations and interactive elements!
-
-## 🌐 **Deployment**
-
-This website is designed to work on:
-- GitHub Pages
-- Netlify
-- Vercel
-- Any static hosting service
-
-Simply upload all files maintaining the folder structure.
-
-## 📈 **Statistics (2025)**
+## **Statistics (2025)**
 
 - **150+** Active Members
 - **8** Major Events Planned
 - **5+** Active Partnerships
 - **3** Major Milestones Achieved
 
-## 🤝 **Contributing**
-
-We welcome contributions! Whether it's:
-- Bug fixes
-- New features
-- Content updates
-- Design improvements
-
-Feel free to submit issues or pull requests.
-
-## 📞 **Contact**
+## **Contact**
 
 - **Location**: Strathmore University, Nairobi, Kenya
 - **Club Type**: Cultural & Educational
-- **Founded**: [Year]
-- **Website**: [Your deployment URL]
 
-## 📝 **Credits**
+## **Credits**
 
 - **Design & Development**: Japanese Club Web Team
 - **Content**: Japanese Club Council Members
@@ -316,7 +186,7 @@ Feel free to submit issues or pull requests.
 - **Icons**: RemixIcon
 - **Animations**: ScrollReveal.js
 
-## 🎌 **Join Us!**
+## **Join Us!**
 
 日本文化を愛する全ての人へ  
 *(To all who love Japanese culture)*
@@ -325,115 +195,20 @@ Interested in Japanese culture? Come join the Japanese Club at Strathmore Univer
 
 ---
 
-## 🏆 **Key Achievements 2024-2025**
+## **Key Achievements 2024-2025**
 
-- ✅ Successfully hosted Club Fair with Embassy support
-- ✅ Record-breaking Matcha + Sushi Tasting Event
-- ✅ Multiple Embassy visits and collaborations
-- ✅ Strong partnership with ChiQ Restaurant
-- ✅ Consistent Friday meetups with cultural activities
-- ✅ Demon Slayer themed event
-- ✅ Sushi Exhibition and workshops
-- ✅ Language Week with Sticker Hive
-- ✅ International Cultural Festival participation
-
----
-
-## 🔧 **Recent Updates & Bug Fixes**
-
-### **✅ Fixed Issues:**
-1. **Gallery Lightbox**: Fixed broken image display - now works perfectly on GitHub Pages
-2. **Image Paths**: Corrected all image source paths for proper loading
-3. **Mobile Responsiveness**: Enhanced mobile experience across all sections
-4. **Navigation**: Fixed active state highlighting for current sections
-
-### **🆕 New Features Added:**
-1. **Loading Screen**: Beautiful animated loading experience
-2. **Scroll Progress Bar**: Real-time visual scroll indicator
-3. **2025 Section**: Comprehensive year overview with animated statistics
-4. **Trivia Carousel**: Interactive fact slider with 6 Japanese facts
-5. **Join Us Section**: Engaging call-to-action with social links
-6. **Floating Elements**: Animated Japanese symbols in hero section
-7. **Scroll Indicator**: Animated "scroll to explore" prompt
-8. **Enhanced Stats**: Animated counter numbers
-9. **Keyboard Navigation**: Arrow keys for trivia navigation
-10. **Easter Egg**: Konami code surprise with confetti
-11. **SEO Optimization**: Meta tags for better search engine visibility
-12. **Social Sharing**: Open Graph and Twitter Card meta tags
-13. **Visual Feedback**: Button click animations
-14. **Auto-Advancing Trivia**: Facts change every 8 seconds
-15. **Quote Cycling**: Footer quotes rotate every 5 seconds
-
-### **🎨 Design Improvements:**
-- Glassmorphism effects throughout
-- Gradient backgrounds and text
-- Enhanced hover effects on all interactive elements
-- Improved color scheme consistency
-- Better typography and spacing
-- Card-based layouts for content
-- Decorative dividers and symbols
-- Shadow and depth enhancements
-
-### **⚡ Performance Optimizations:**
-- Optimized animations for 60fps
-- Efficient JavaScript with event delegation
-- Intersection Observer for lazy animations
-- Smooth scroll behavior
-- Minimal resource loading
-
----
-
-## 📊 **Website Statistics**
-
-- **Total Sections**: 8
-- **Interactive Elements**: 50+
-- **Animations**: 30+ unique animations
-- **Images**: 33 gallery photos
-- **Trivia Facts**: 6 rotating facts
-- **Japanese Quotes**: 8 wisdom quotes
-- **Lines of CSS**: 2000+
-- **Lines of JavaScript**: 300+
-- **Social Media Links**: 5
-- **Keyboard Shortcuts**: 4
-
----
-
-## 🚀 **Performance Metrics**
-
-- **Page Load**: < 2 seconds
-- **Animation Framerate**: 60 FPS
-- **Lighthouse Score**: 90+
-- **Mobile Friendly**: ✅ Yes
-- **Accessibility**: ✅ WCAG Compliant
-- **Browser Support**: All modern browsers
-
----
-
-## 📱 **Device Compatibility**
-
-✅ **Desktop** (1920×1080 and above)  
-✅ **Laptop** (1366×768 and above)  
-✅ **Tablet** (768×1024)  
-✅ **Mobile** (375×667 and above)  
-✅ **iPhone** (all models)  
-✅ **Android** (all major devices)
-
----
-
-## 🌟 **Browser Support**
-
-✅ Chrome (90+)  
-✅ Firefox (88+)  
-✅ Safari (14+)  
-✅ Edge (90+)  
-✅ Opera (76+)
-
----
-
-**Made with ❤️ and 🍵 by the Japanese Club at Strathmore University**
+-  Successfully hosted Club Fair with Embassy support
+-  Record-breaking Matcha + Sushi Tasting Event
+-  Multiple Embassy visits and collaborations
+-  Strong partnership with ChiQ Restaurant
+-  Consistent Friday meetups with cultural activities
+-  Demon Slayer themed event
+-  Sushi Exhibition and workshops
+-  Language Week with Sticker Hive
+-  International Cultural Festival participation
 
 *Explore. Learn. Connect. 日本を愛し、共に学ぼう！*
 
-### 🎌 Version 2.0 - December 2024
+###  Version 2.0 - December 2024
 
 © 2024 Japanese Club at Strathmore University. All rights reserved.
