@@ -12,9 +12,13 @@ menuBtn.addEventListener("click", (e) => {
 
 // Close the mobile menu when any nav link is clicked
 navLinks.addEventListener("click", (e) => {
+  if (e.target.closest(".dropdown-toggle")) return;
   navLinks.classList.remove("open");
   menuBtnIcon.setAttribute("class", "ri-menu-line");
 });
+
+// If the ScrollReveal CDN fails to load, keep the rest of the site working
+if (typeof ScrollReveal === 'undefined') { window.ScrollReveal = () => ({ reveal() {} }); }
 
 // ScrollReveal configuration for animations
 const scrollRevealOption = {
@@ -187,7 +191,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]:not(.dropdown-toggle)').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
     
@@ -213,7 +217,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Highlight active section in navigation
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav__links a');
+const navAnchors = () => document.querySelectorAll('.nav__links a');
 
 function highlightNav() {
   let scrollPosition = window.scrollY + 100;
@@ -224,7 +228,7 @@ function highlightNav() {
     const sectionId = section.getAttribute('id');
     
     if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      navLinks.forEach(link => {
+      navAnchors().forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${sectionId}`) {
           link.classList.add('active');
@@ -273,10 +277,7 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 // Observe the stats container
 document.addEventListener('DOMContentLoaded', () => {
-  const statsContainer = document.querySelector('.stats-container');
-  if (statsContainer) {
-    statsObserver.observe(statsContainer);
-  }
+  window.observeStats = () => { const c = document.querySelector('.stats-container'); if (c) statsObserver.observe(c); };
 });
 
 

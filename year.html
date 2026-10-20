@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Japanese Club at Strathmore University - Explore Japanese culture through language, anime, traditional arts, and exciting events. Join our vibrant community!" />
+  <meta name="keywords" content="Japanese Club, Strathmore University, Japanese culture, anime, manga, calligraphy, origami, Japan, cultural events" />
+  <meta name="author" content="Japanese Club at Strathmore University" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Japanese Club at Strathmore University" />
+  <meta property="og:description" content="Experience Japanese culture with us! From language basics to anime, calligraphy, and traditional experiences." />
+  <meta property="og:image" content="assets/Japanclublogohd.jpg" />
+  <meta property="og:url" content="https://yourdomain.com" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Japanese Club at Strathmore University" />
+  <meta name="twitter:description" content="Experience Japanese culture with us! Join our community of Japan enthusiasts." />
+  <meta name="twitter:image" content="assets/Japanclublogohd.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/Japanclublogohd.jpg" />
+  
+  <!-- Stylesheets -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  
+  <title>Our Years | Japanese Club at Strathmore University</title>
+</head>
+<body>
+  <div class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav__header">
+      <div class="nav__logo"><a href="index.html">Japanese club</a></div>
+      <div class="nav__menu__btn" id="menu-btn"><i class="ri-menu-line"></i></div>
+    </div>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="index.html#home">HOME</a></li>
+      <li><a href="index.html#about">ABOUT US</a></li>
+      <li><a href="index.html#events">EVENTS</a></li>
+      <li class="nav__dropdown" id="years-menu">
+        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">OUR YEARS <i class="ri-arrow-down-s-line"></i></a>
+        <ul class="dropdown-menu" id="years-dropdown"></ul>
+      </li>
+      <li><a href="index.html#gallery">GALLERY</a></li>
+      <li><a href="index.html#learn">LEARN</a></li>
+      <li><a href="quiz/index.html">TRIVIA</a></li>
+    </ul>
+  </nav>
+
+  <main id="years" class="section section-2025 year-page">
+    <a href="index.html" class="back-link">← Back to home</a>
+    <div id="year-view"><p class="muted">Loading…</p></div>
+    <div id="year-pager" class="year-pager"></div>
+  </main>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+
+  <!-- Footer with Cycling Quotes -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="quote-container">
+        <h3>Japanese Wisdom</h3>
+        <p id="quote-text" class="quote-text"></p>
+        <p id="quote-translation" class="quote-translation"></p>
+      </div>
+      <div class="footer-info">
+        <p><a href="admin/" class="admin-link" rel="nofollow" aria-label="Club admin">&copy;</a> <span id="copy-year">2025</span> Japanese Club at Strathmore University. All rights reserved.</p>
+        <p>日本文化を愛する全ての人へ (To all who love Japanese culture)</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="main.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>
+
+

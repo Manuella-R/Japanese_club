@@ -1,0 +1,146 @@
+{
+  "years": [
+    {
+      "year": "2025",
+      "title": "Our Ongoing Adventure",
+      "intro": "Welcome to 2025! This year brings new challenges and exciting opportunities as we continue to grow and share Japanese culture with the Strathmore community.",
+      "stats": [
+        {
+          "icon": "👥",
+          "value": 100,
+          "label": "Active Members"
+        },
+        {
+          "icon": "🎯",
+          "value": 10,
+          "label": "Events Planned"
+        },
+        {
+          "icon": "🌟",
+          "value": 3,
+          "label": "Major Milestones"
+        },
+        {
+          "icon": "🤝",
+          "value": 3,
+          "label": "Partnerships"
+        }
+      ],
+      "entries": [
+        {
+          "title": "🎪 January - Club Fair Success",
+          "tag": "Fresh Beginnings",
+          "text": "We kicked off the year with an exciting Club Fair! Thanks to the incredible support from **Baraka and Perez from the Embassy**, a wonderful representative from **JICA**, and our dedicated team members **Mark and Clara**, we had a fantastic turnout with many new registrations! The energy was amazing and we welcomed so many new members into our Japanese culture family.",
+          "image": "",
+          "highlight": false
+        },
+        {
+          "title": "🍵 May - Culinary Adventures",
+          "tag": "Authentic Experiences",
+          "text": "**Matcha + Sushi Tasting Event:** We welcomed an incredible number of new members for this authentic Japanese food experience! The combination of traditional matcha tea and sushi proved to be the perfect way to introduce members to Japanese culinary culture. The turnout was phenomenal and everyone loved learning about the cultural significance of these iconic Japanese foods.",
+          "image": "",
+          "highlight": false
+        },
+        {
+          "title": "Embassy Movie Week",
+          "tag": "Embassy Visit",
+          "text": "**Embassy Movie Week:** We had an amazing visit to the Japanese Embassy during their movie week! Lots of new faces joined us for this cultural experience, watching authentic Japanese films and learning about cinema culture.",
+          "image": "",
+          "highlight": false
+        },
+        {
+          "title": "Friday Meetup - 20+ Members!",
+          "tag": "Embassy Visit",
+          "text": "**Friday Meetup Success:** Our Friday meetup in June was exceptionally well-attended with around **20 members**! We enjoyed activities including calligraphy practice, interactive Kahoots about Japanese culture, origami, and great conversations. The energy was fantastic!",
+          "image": "",
+          "highlight": false
+        },
+        {
+          "title": "👹 Demon Slayer Movie Night",
+          "tag": "BIGGEST EVENT 2025!",
+          "text": "**THE Highlight of 2025!** Our Demon Slayer movie screening was absolutely EPIC! We had an incredible turnout with anime enthusiasts and Japanese culture lovers coming together for an unforgettable experience. The atmosphere was electric, members came in cosplay, and the shared excitement made this our most successful event of the year. This is what Japanese club is all about - bringing people together through shared love of Japanese culture!",
+          "image": "",
+          "highlight": true
+        },
+        {
+          "title": "🎌 October - Embassy Cultural Festival",
+          "tag": "Major Event",
+          "text": "**Embassy Cultural Festival:** We had an amazing time at the Japanese Embassy's Cultural Festival in October! This was a spectacular showcase of Japanese culture with traditional performances, food stalls, cultural demonstrations, and interactive activities. Our members got to experience authentic Japanese festivals right here in Nairobi. It was an incredible opportunity to immerse ourselves in Japanese traditions and connect with the wider Japanese community in Kenya!",
+          "image": "",
+          "highlight": false
+        },
+        {
+          "title": "ChiQ Restaurant Collaboration",
+          "tag": "Building Momentum",
+          "text": "**🍱 ChiQ Restaurant Event:** Our collaboration with ChiQ Restaurant was a hit! Members enjoyed authentic Japanese dining and learned about traditional food preparation methods.",
+          "image": "",
+          "highlight": false
+        },
+        {
+          "title": "Sushi Exhibition & Workshop",
+          "tag": "Building Momentum",
+          "text": "**🍣 Sushi Exhibition:** We showcased the art of sushi-making, giving members hands-on experience with this iconic Japanese culinary tradition. Everyone loved learning the techniques!",
+          "image": "",
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "title": "Highlights",
+      "intro": "2024 has been one for the books! We organized exciting new activities, eco-friendly camping initiatives, and hosted various community-building events. Thank you to all who joined us in making these moments unforgettable!",
+      "stats": [],
+      "entries": [
+        {
+          "title": "April",
+          "tag": "",
+          "text": "In April, the Japanese Club held weekly meetings every Friday, where members engaged in a variety of fun and educational activities. We kicked off with exciting **anime Kahoots**, where participants tested their anime knowledge in a lively quiz format. We also took our first steps in learning basic Japanese greetings and explored the art of **origami**.",
+          "image": "assets/photo (33).jpg",
+          "highlight": false
+        },
+        {
+          "title": "May",
+          "tag": "",
+          "text": "In May, we hosted an enriching **online webinar** with Diana, who connected us to two prestigious Japanese schools in Tokyo. Diana provided valuable insights into living and studying in Japan, including the **visa process**, available visa types, the job market, and her personal experiences in Japan. The principals of the two schools also joined the session to discuss the learning experiences at their institutions.",
+          "image": "assets/photo (31).jpg",
+          "highlight": false
+        },
+        {
+          "title": "June",
+          "tag": "",
+          "text": "June brought an exciting opportunity for our members as we attended the **International Cultural Festival** at the Nairobi Museum, where we experienced not only Japanese culture but also a variety of other cultures from around the world. We also continued with our regular Friday meetings, fostering a balance between learning and fun.",
+          "image": "assets/photo (30).jpg",
+          "highlight": false
+        },
+        {
+          "title": "July",
+          "tag": "",
+          "text": "In July, the Japanese Club visited the **Japan Embassy**, where we learned about special parts of Japanese culture through embassy video essays. Members practiced **calligraphy**, wrote their names in Japanese, wore traditional Japanese clothing, and learned how to make **origami cranes** and **frogs**.",
+          "image": "assets/photo (28).jpg",
+          "highlight": false
+        },
+        {
+          "title": "September",
+          "tag": "",
+          "text": "September was an eventful month! We kicked off with a **Club Exposure event** where the Japan Embassy partnered with us to bring authentic **Japanese food displays** to Strathmore. This event also featured educational talks on **scholarships** and allowed attendees to try on traditional Japanese attire. The **Chinese Club** joined us for a team-building event at **Karura Forest**, where we enjoyed a fun-filled **21 km walk**. The month concluded with a trip to the Japan Embassy for the **Short Movie Festival**, where we watched a Japanese comedy film.",
+          "image": "assets/photo (10).jpg",
+          "highlight": false
+        },
+        {
+          "title": "October",
+          "tag": "",
+          "text": "October was a milestone month as we secured a partnership with **ChiQ Restaurant** and began plans to bring their authentic Japanese food to Strathmore. We also met with **foreign exchange students** from **Akita University** and went on a scenic **hike at Karura Forest**. Our weekly meetings continued, and members attended the second day of the **Japan Embassy's 3-day Movie Festival**, enjoying a screening and tasting **tofu** after the second film. Later in the month, a group of us attended the **Halloween party** hosted by ChiQ Restaurant at **Sarit Center**.",
+          "image": "assets/photo (16).jpg",
+          "highlight": false
+        },
+        {
+          "title": "November",
+          "tag": "",
+          "text": "In November, we hosted a **Language Week** in partnership with **Sticker Hive**, where we sold unique Japanese-themed stickers on Wednesday and Thursday. On Thursday, the **Japan Embassy** joined us for an interactive cultural experience, featuring activities like **calligraphy**, **origami**, trying on **traditional clothing**, and playing **Japanese games**. It was a fantastic way for members and newcomers alike to immerse themselves in Japanese culture!",
+          "image": "assets/photo (17).jpg",
+          "highlight": false
+        }
+      ]
+    }
+  ]
+}
