@@ -2019,3 +2019,55 @@ img {
     justify-content: center;
   }
 }
+
+
+/* ===== Dynamic content, dropdown, events, learn (added with the admin upgrade) ===== */
+.muted { opacity: .7; font-style: italic; }
+.admin-link { color: inherit; opacity: .6; }
+.admin-link:hover { opacity: 1; }
+
+/* "Our Years" dropdown */
+.nav__dropdown { position: relative; list-style: none; }
+.dropdown-menu { list-style: none; display: none; flex-direction: column; gap: .25rem; margin-top: .75rem; text-align: center; }
+.nav__dropdown.open .dropdown-menu { display: flex; }
+.dropdown-menu a { display: block; padding: .35rem 1rem; font-size: .9rem; }
+.dropdown-menu a::after { display: none; }
+@media (width > 768px) {
+  .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 130px; margin-top: .6rem; padding: .5rem 0;
+    background: var(--text-dark); border-radius: .6rem; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+  .nav__links .dropdown-menu a { color: var(--primary-color); }
+  .nav__links .dropdown-menu a:hover, .nav__links .dropdown-menu a.active { background: rgba(243,234,229,.15); color: var(--white); }
+}
+
+/* Year view */
+.month-header { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; padding: 0 0 .5rem; }
+.month-section { padding: 1.25rem; }
+.month-section .month-header h3 { margin-bottom: 0; }
+.month-tag { background: var(--text-dark); color: var(--primary-color); font-size: .75rem; padding: .25rem .7rem; border-radius: 999px; }
+.month-tag.highlight { background: #b4443a; color: #fff; }
+.highlight-section { border: 2px solid #b4443a !important; }
+.month-content p { flex: 1; line-height: 1.7; }
+@media (max-width: 768px) { .month-content { flex-direction: column; align-items: stretch !important; } .month-image { width: 100% !important; height: 220px !important; } }
+
+/* Upcoming events */
+.events-list { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.event-card { display: flex; gap: 1.25rem; padding: 1.25rem; background: rgba(255,255,255,.7); border: 1px solid rgba(44,39,36,.1); border-radius: 1rem; }
+.event-date { flex: 0 0 76px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--text-dark); color: var(--primary-color); border-radius: .8rem; padding: .6rem; }
+.event-day { font-size: 1.9rem; font-weight: 700; line-height: 1; }
+.event-month { text-transform: uppercase; letter-spacing: 1px; font-size: .8rem; }
+.event-year { font-size: .7rem; opacity: .7; }
+.event-body h3 { margin: 0 0 .3rem; }
+.event-meta { font-size: .9rem; opacity: .8; }
+.event-links { margin-top: .6rem; font-size: .9rem; }
+.event-links a { color: var(--text-dark); text-decoration: underline; font-weight: 600; }
+
+/* Gallery filters + learn grid */
+.filter-bar { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.filter-bar button { border: 1px solid var(--text-dark); background: transparent; color: var(--text-dark); padding: .35rem 1rem; border-radius: 999px; cursor: pointer; font: inherit; }
+.filter-bar button.on { background: var(--text-dark); color: var(--primary-color); }
+.learn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.learn-card { background: rgba(255,255,255,.7); border: 1px solid rgba(44,39,36,.1); border-radius: 1rem; overflow: hidden; }
+.learn-card img { height: 200px; object-fit: cover; cursor: zoom-in; }
+.learn-card figcaption { padding: .75rem 1rem; font-weight: 600; font-size: .95rem; }
+a.join-btn { display: inline-flex; align-items: center; gap: .4rem; text-decoration: none; }
+#events, #years, #gallery, #learn { scroll-margin-top: 110px; }
