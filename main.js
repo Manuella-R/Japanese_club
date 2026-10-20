@@ -17,6 +17,9 @@ navLinks.addEventListener("click", (e) => {
   menuBtnIcon.setAttribute("class", "ri-menu-line");
 });
 
+// If the ScrollReveal CDN fails to load, keep the rest of the site working
+if (typeof ScrollReveal === 'undefined') { window.ScrollReveal = () => ({ reveal() {} }); }
+
 // ScrollReveal configuration for animations
 const scrollRevealOption = {
   distance: "50px",

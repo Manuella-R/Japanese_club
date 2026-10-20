@@ -8,10 +8,9 @@
   const fail = (el, m) => { if (el) el.innerHTML = `<p class="muted">${m}</p>`; };
   const offline = 'Content could not be loaded. If you opened this file directly, view it through the website (or a local web server) instead.';
 
-  /* ---------- Our Years ---------- */
-  let years = [];
-  function renderYear(y) {
-    const box = $('#year-view');
+  /* ---------- Our Years: menu, home-page cards, and the year.html page ---------- */
+  const yearUrl = y => `year.html?y=${encodeURIComponent(y)}`;
+  function renderYear(y, all) {
     const stats = (y.stats || []).length ? `<div class="stats-container">${y.stats.map(s => `
       <div class="stat-card"><div class="stat-icon">${esc(s.icon)}</div>
       <div class="stat-number" data-target="${+s.value || 0}">0</div>
@@ -24,9 +23,12 @@
           <p>${fmt(e.text)}</p>
         </div>
       </div><hr class="month-divider">`).join('');
-    box.innerHTML = `<h2>${esc(y.year)}${y.title ? ' – ' + esc(y.title) : ''}</h2>
+    $('#year-view').innerHTML = `<h2>${esc(y.year)}${y.title ? ' – ' + esc(y.title) : ''}</h2>
       ${y.intro ? `<p class="section-intro">${fmt(y.intro)}</p>` : ''}${stats}${entries || '<p class="muted">Nothing here yet.</p>'}`;
-    document.querySelectorAll('#years-dropdown a').forEach(a => a.classList.toggle('active', a.dataset.year === y.year));
+    document.title = `${y.year} | Japanese Club at Strathmore University`;
+    const i = all.indexOf(y), newer = all[i - 1], older = all[i + 1];
+    $('#year-pager').innerHTML = `${older ? `<a class="pager-btn" href="${yearUrl(older.year)}">← ${esc(older.year)}</a>` : '<span></span>'}
+      ${newer ? `<a class="pager-btn" href="${yearUrl(newer.year)}">${esc(newer.year)} →</a>` : '<span></span>'}`;
     animateStats();
   }
   function animateStats() {
@@ -38,27 +40,16 @@
     const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } }), { threshold: .4 });
     els.forEach(el => io.observe(el));
   }
-  function showYear(year, scroll) {
-    const y = years.find(v => v.year === String(year)) || years[0];
-    if (!y) return;
-    renderYear(y);
-    history.replaceState(null, '', `#year-${y.year}`);
-    if (scroll) $('#years').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
   function setupYears(list) {
-    years = list.slice().sort((a, b) => String(b.year).localeCompare(String(a.year), undefined, { numeric: true }));
-    const dd = $('#years-dropdown');
-    dd.innerHTML = years.map(y => `<li><a href="#year-${esc(y.year)}" data-year="${esc(y.year)}">${esc(y.year)}</a></li>`).join('');
-    dd.addEventListener('click', e => {
-      const a = e.target.closest('a'); if (!a) return;
-      e.preventDefault(); e.stopPropagation();
-      showYear(a.dataset.year, true);
-      $('#years-menu').classList.remove('open');
-      $('#nav-links').classList.remove('open');
-      $('#menu-btn i').setAttribute('class', 'ri-menu-line');
-    });
-    const m = location.hash.match(/^#year-(.+)$/);
-    showYear(m ? decodeURIComponent(m[1]) : years[0] && years[0].year, !!m);
+    const all = list.slice().sort((a, b) => String(b.year).localeCompare(String(a.year), undefined, { numeric: true }));
+    const current = new URLSearchParams(location.search).get('y');
+    $('#years-dropdown').innerHTML = all.map(y => `<li><a href="${yearUrl(y.year)}"${y.year === current ? ' class="active"' : ''}>${esc(y.year)}</a></li>`).join('');
+    const cards = $('#years-cards');
+    if (cards) cards.innerHTML = all.map(y => `<a class="year-card" href="${yearUrl(y.year)}"><span class="year-card-num">${esc(y.year)}</span><span class="year-card-title">${esc(y.title || 'Our year')}</span><span class="year-card-meta">${(y.entries || []).length} highlights →</span></a>`).join('') || '<p class="muted">Coming soon.</p>';
+    if ($('#year-view')) {
+      const y = all.find(v => v.year === current) || all[0];
+      if (y) renderYear(y, all); else fail($('#year-view'), 'No years yet.');
+    }
   }
   const menu = $('#years-menu');
   $('.dropdown-toggle').addEventListener('click', e => {
@@ -67,8 +58,9 @@
     e.currentTarget.setAttribute('aria-expanded', open);
   });
   document.addEventListener('click', e => { if (!menu.contains(e.target)) menu.classList.remove('open'); });
-  window.addEventListener('hashchange', () => { const m = location.hash.match(/^#year-(.+)$/); if (m && years.length) showYear(decodeURIComponent(m[1]), true); });
-  // smooth scroll for the nav items that were not part of the original static page
+  // old bookmarks like /#year-2024 -> the new year page
+  const legacy = location.hash.match(/^#year-(.+)$/); if (legacy && !$('#year-view')) location.replace(yearUrl(decodeURIComponent(legacy[1])));
+  // smooth scroll for in-page nav items (home page)
   document.querySelectorAll('.nav__links a[href^="#"]:not(.dropdown-toggle)').forEach(a => a.addEventListener('click', e => {
     const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
   }));
@@ -85,7 +77,7 @@
       '&details=' + encodeURIComponent(e.description || '') + '&location=' + encodeURIComponent(e.location || '');
   }
   function renderEvents(list) {
-    const box = $('#events-list');
+    const box = $('#events-list'); if (!box) return;
     const up = list.filter(e => e.date >= today()).sort((a, b) => (a.date + (a.time || '')).localeCompare(b.date + (b.time || '')));
     if (!up.length) { box.innerHTML = '<p class="muted">No upcoming events right now – check back soon, or email <a href="mailto:japaneseclub@strathmore.edu">japaneseclub@strathmore.edu</a> to ask what we have planned!</p>'; return; }
     box.innerHTML = up.map(e => {
@@ -104,7 +96,7 @@
   function renderGallery(images) {
     const gal = images.filter(i => (i.section || 'gallery') === 'gallery');
     const ys = [...new Set(gal.map(i => i.year).filter(Boolean))].sort().reverse();
-    const bar = $('#gallery-filters'), grid = $('#gallery-grid');
+    const bar = $('#gallery-filters'), grid = $('#gallery-grid'); if (!grid) return;
     const draw = (y) => {
       grid.innerHTML = gal.filter(i => !y || i.year === y).map(i => `<div class="gallery-item"><img src="${esc(i.src)}" alt="${esc(i.caption || 'Club photo')}" class="gallery-image" loading="lazy" data-full="${esc(i.src)}"></div>`).join('') || '<p class="muted">No photos yet.</p>';
       bar.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.y === (y || '')));
@@ -118,8 +110,8 @@
     $('#learn-grid').onclick = e => { const i = e.target.closest('img'); if (i) openLightbox(i.dataset.full); };
   }
 
-  load('years.json').then(d => setupYears(d.years || [])).catch(() => fail($('#year-view'), offline));
-  load('events.json').then(d => renderEvents(d.events || [])).catch(() => fail($('#events-list'), offline));
-  load('gallery.json').then(d => renderGallery(d.images || [])).catch(() => { fail($('#gallery-grid'), offline); });
+  load('years.json').then(d => setupYears(d.years || [])).catch(() => { fail($('#year-view'), offline); fail($('#years-cards'), offline); });
+  if ($('#events-list')) load('events.json').then(d => renderEvents(d.events || [])).catch(() => fail($('#events-list'), offline));
+  if ($('#gallery-grid')) load('gallery.json').then(d => renderGallery(d.images || [])).catch(() => { fail($('#gallery-grid'), offline); });
   const cy = $('#copy-year'); if (cy) cy.textContent = new Date().getFullYear();
 })();

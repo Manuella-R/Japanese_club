@@ -2071,3 +2071,79 @@ img {
 .learn-card figcaption { padding: .75rem 1rem; font-weight: 600; font-size: .95rem; }
 a.join-btn { display: inline-flex; align-items: center; gap: .4rem; text-decoration: none; }
 #events, #years, #gallery, #learn { scroll-margin-top: 110px; }
+
+/* Year pages */
+.year-page { padding-top: 130px !important; min-height: 70vh; }
+.back-link { display: inline-block; margin-bottom: 1rem; color: var(--text-dark); font-weight: 600; }
+.back-link:hover { text-decoration: underline; }
+.year-pager { display: flex; justify-content: space-between; gap: 1rem; margin: 2rem 0 1rem; }
+.pager-btn { padding: .6rem 1.4rem; background: var(--text-dark); color: var(--primary-color); border-radius: 999px; font-weight: 600; }
+.pager-btn:hover { background: #4a413c; }
+.years-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+.year-card { display: flex; flex-direction: column; gap: .35rem; padding: 1.4rem; background: var(--text-dark); color: var(--primary-color); border-radius: 1rem; transition: transform .25s, box-shadow .25s; }
+.year-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.2); }
+.year-card-num { font-size: 2.2rem; font-weight: 700; color: var(--white); line-height: 1; }
+.year-card-title { font-weight: 600; }
+.year-card-meta { font-size: .85rem; opacity: .75; }
+
+
+/* moved from inline <style> in index.html so every page shares it */
+    .section {
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+
+    .month-section {
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        border: 1px solid rgba(243, 234, 229, 0.3);
+    }
+
+    .month-content {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .month-image {
+        width: 200px;
+        height: 200px;
+        margin-right: 0;
+        object-fit: cover;
+    }
+    
+    .month-section h3 {
+        color: var(--text-dark);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-bottom: 3px solid var(--primary-color);
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    .month-divider {
+        border: none;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+        margin: 20px 0;
+        position: relative;
+    }
+    
+    .month-divider::after {
+        content: '✦';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 0 10px;
+        color: var(--text-dark);
+    }
+
+    h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
