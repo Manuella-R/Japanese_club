@@ -42,12 +42,18 @@
 </style>
 </head>
 <body>
-<header><h1>🎌 Japanese Club – Admin</h1><div id="who" class="hidden"><span id="whoName"></span> <button id="logout">Sign out</button></div></header>
+<header><h1>🎌 Japanese Club – Admin</h1><div id="who" class="hidden"><a href="../" target="_blank" rel="noopener" style="color:inherit;margin-right:.8rem">View live site ↗</a><span id="whoName"></span> <button id="logout">Sign out</button></div></header>
 <main>
   <!-- LOGIN -->
   <section id="login" class="card login">
     <h2 style="margin-top:0">Admin sign-in</h2>
-    <p class="hint">Paste your GitHub personal access token. It is kept only in this browser tab (cleared when you close it) and is sent only to api.github.com.</p>
+    <p class="hint">Paste your GitHub personal access token. It stays in this browser tab only (cleared when you close it) and is sent only to api.github.com.</p>
+    <details class="hint" style="margin:.5rem 0">
+      <summary style="cursor:pointer"><b>Need a token? Which kind?</b></summary>
+      <p><b>You own the repo</b> (<code>Manuella-R</code>) → <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">make a fine-grained token</a>: Resource owner = you, <i>Only select repositories</i> → <code>Japanese_club</code>, Permissions → <b>Contents: Read and write</b>.</p>
+      <p><b>You are a collaborator</b> (or the above doesn’t work) → <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=Japanese%20Club%20admin" target="_blank" rel="noopener">make a classic token</a> with the <b>public_repo</b> scope (the link pre-ticks it). Your account must also be added in the repo’s Settings → Collaborators and you must have accepted the invitation.</p>
+      <p>Then make sure your GitHub username is listed under <b>Admins</b>.</p>
+    </details>
     <label for="tok">GitHub token</label>
     <input id="tok" type="password" autocomplete="off" placeholder="github_pat_…" />
     <p style="margin-top:1rem"><button class="primary" id="loginBtn">Sign in</button></p>
@@ -78,11 +84,38 @@ let me = null, perms = [];
 const state = {}, shas = {}, dirty = {};
 let tab = null, yearIdx = 0;
 
+const REPO_URL = `https://api.github.com/repos/${OWNER}/${REPO}`;
 async function gh(path, opts = {}) {
-  const url = path.startsWith('http') ? path : `https://api.github.com/repos/${OWNER}/${REPO}/${path}`;
-  const r = await fetch(url, { ...opts, headers: { Accept:'application/vnd.github+json', Authorization:'Bearer '+token, ...(opts.headers||{}) } });
-  if (!r.ok) { const e = new Error(r.status === 401 ? 'Token rejected by GitHub.' : r.status === 403 || r.status === 404 ? 'GitHub says this token cannot access the repository (needs Contents: read & write).' : r.status === 409 || r.status === 422 ? 'Conflict: the file changed on GitHub since you loaded it. Reload and re-apply your change.' : 'GitHub error ' + r.status); e.status = r.status; throw e; }
+  const url = path.startsWith('http') ? path : `${REPO_URL}${path ? '/' + path : ''}`;   // no trailing slash
+  let r;
+  try { r = await fetch(url, { ...opts, headers: { Accept:'application/vnd.github+json', Authorization:'Bearer ' + token, ...(opts.headers||{}) } }); }
+  catch (e) { const err = new Error('network'); err.network = true; err.detail = String(e && e.message || e); throw err; }
+  if (!r.ok) {
+    let body = {}; try { body = await r.json(); } catch (_) {}
+    const err = new Error(body.message || ('HTTP ' + r.status));
+    err.status = r.status; err.ghMessage = body.message || ''; err.scopes = r.headers.get('x-oauth-scopes');
+    err.rate = r.headers.get('x-ratelimit-remaining') === '0';
+    throw err;
+  }
   return r.json();
+}
+// Turn a GitHub/network error into something a club officer can act on
+function explain(err, stage) {
+  const kind = token.startsWith('github_pat_') ? 'fine' : /^(ghp_|gho_)/.test(token) ? 'classic' : 'unknown';
+  const raw = err.network ? `Network error: ${esc(err.detail)}` : `GitHub said: “${esc(err.ghMessage)}” (HTTP ${err.status})`;
+  let help;
+  if (err.network) help = 'Your browser could not reach api.github.com. Try: another network (school Wi-Fi/VPN/proxy can block it), a private window with extensions off (ad-blockers sometimes block API calls), and make sure you opened the https://…github.io address, not a downloaded file.';
+  else if (err.rate) help = 'GitHub is rate-limiting this connection. Wait a few minutes and try again.';
+  else if (err.status === 401) help = 'GitHub rejected the token: it is mistyped, expired, or was revoked. Create a new one and paste it again (copy the whole token, nothing else).';
+  else if (stage === 'write') help = 'The token can read but not write. It needs <b>Contents: Read and write</b> (fine-grained) or the <b>public_repo</b> scope (classic).';
+  else if (err.status === 403 || err.status === 404) {
+    help = kind === 'fine'
+      ? `Fine-grained tokens can only reach repositories owned by the token’s “resource owner”. <b>If you are the owner (${esc(OWNER)})</b>: re-create it with “Only select repositories” → <b>${esc(REPO)}</b> and <b>Contents: Read and write</b>. <b>If you are a collaborator</b>: GitHub generally won’t let a fine-grained token reach someone else’s personal repo, so create a <b>classic</b> token instead (scope <b>public_repo</b>). Collaborators must also have accepted the invitation email.`
+      : kind === 'classic'
+      ? `The classic token needs the <b>public_repo</b> (or <b>repo</b>) scope${err.scopes != null ? ` – this one has: <b>${esc(err.scopes) || 'none'}</b>` : ''}. Also check that this GitHub account is a collaborator on <b>${esc(OWNER)}/${esc(REPO)}</b> and has accepted the invitation.`
+      : `This token cannot see <b>${esc(OWNER)}/${esc(REPO)}</b>. Check the scopes/repository access, and that this GitHub account is the owner or an accepted collaborator.`;
+  } else help = 'Unexpected response from GitHub – see the details above.';
+  return `<div class="msg err"><b>Couldn’t sign in at step: ${esc(stage)}</b><br>${help}<br><span class="hint">${raw}</span></div>`;
 }
 const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,'')), c => c.charCodeAt(0)));
 const b64enc = s => { const b = new TextEncoder().encode(s); let t=''; b.forEach(c => t += String.fromCharCode(c)); return btoa(t); };
@@ -92,24 +125,36 @@ async function readFile(key) {
 }
 async function saveFile(key, message) {
   const res = await gh(`contents/${FILES[key]}`, { method:'PUT', body: JSON.stringify({ message, branch:BRANCH, sha:shas[key], content:b64enc(JSON.stringify(state[key], null, 2) + '\n') }) });
-  shas[key] = res.content.sha; dirty[key] = false;
+  shas[key] = res.content.sha; dirty[key] = false; refreshTabs();
 }
 function notify(text, kind='info') { $('#msg').innerHTML = text ? `<div class="msg ${kind}">${text}</div>` : ''; if (text) window.scrollTo({ top:0, behavior:'smooth' }); }
 const getP = (path) => path.split('.').reduce((o,k) => o[k], state);
 const setP = (path, v) => { const k = path.split('.'); const last = k.pop(); k.reduce((o,x) => o[x], state)[last] = v; };
 const fileKeyOf = path => path.split('.')[0];
+const TAB_FILE = { years:'years', events:'events', gallery:'gallery', learn:'gallery', admins:'admins' };
+function refreshTabs() { document.querySelectorAll('#tabs button').forEach(b => { const d = dirty[TAB_FILE[b.dataset.tab]]; b.textContent = TABS[b.dataset.tab] + (d ? ' ●' : ''); }); }
 const can = s => perms.includes('all') || perms.includes(s);
 
 /* ---------- login ---------- */
-async function login(t) {
-  token = t.trim();
-  const user = await gh('https://api.github.com/user');
-  const repo = await gh('');
-  if (!repo.permissions || !repo.permissions.push) throw new Error('This token cannot write to the club repository.');
-  await readFile('admins');
-  const entry = (state.admins.admins || []).find(a => a.user.toLowerCase() === user.login.toLowerCase());
-  if (!entry) throw new Error(`@${user.login} is not on the admin list (data/admins.json).`);
-  me = user.login; perms = entry.sections || [];
+async function login(t, say = () => {}) {
+  token = t.replace(/[^\x21-\x7E]/g, '');            // strip spaces, quotes-with-spaces, zero-width characters from pasting
+  token = token.replace(/^["'`]+|["'`]+$/g, '');
+  if (!token) { const e = new Error('Paste your token first.'); e.local = true; throw e; }
+  let stage = 'checking the token';
+  try {
+    const user = await gh('https://api.github.com/user');
+    say(`✓ Token accepted – signed in as <b>@${esc(user.login)}</b>`);
+    stage = 'reaching the repository';
+    const repo = await gh('');
+    say(`✓ Repository <b>${esc(repo.full_name)}</b> reachable`);
+    if (repo.permissions && repo.permissions.push === false) { const e = new Error('read-only'); e.readOnly = true; e.status = 403; e.ghMessage = `@${user.login} only has read access to this repository`; throw e; }
+    stage = 'reading the admin list';
+    await readFile('admins');
+    const entry = (state.admins.admins || []).find(a => a.user.toLowerCase() === user.login.toLowerCase());
+    if (!entry) { const e = new Error('not-listed'); e.notListed = user.login; throw e; }
+    say('✓ You are on the admin list');
+    me = user.login; perms = entry.sections || [];
+  } catch (e) { e.stage = stage; throw e; }
   sessionStorage.setItem('jc_token', token);
   $('#login').classList.add('hidden'); $('#app').classList.remove('hidden'); $('#who').classList.remove('hidden');
   $('#whoName').textContent = '@' + me;
@@ -118,21 +163,30 @@ async function login(t) {
   for (const k of ['years','events','gallery']) if (allowed.includes(k) || (k==='gallery' && allowed.includes('learn'))) await readFile(k);
   show(allowed[0]);
 }
+function loginError(e) {
+  if (e.local) return `<div class="msg err">${esc(e.message)}</div>`;
+  if (e.notListed) return `<div class="msg err"><b>Token works, but @${esc(e.notListed)} isn’t on the admin list.</b><br>Ask an existing admin to add this GitHub username in <b>Admins</b> (or <code>data/admins.json</code>).</div>`;
+  if (e.readOnly) return `<div class="msg err"><b>Signed in, but with read-only access.</b><br>${esc(e.ghMessage)}. Ask the repo owner to give this account <b>Write</b> access (Settings → Collaborators).</div>`;
+  return explain(e, e.stage || 'signing in');
+}
 $('#loginBtn').onclick = async () => {
-  const b = $('#loginBtn'); b.disabled = true; $('#loginMsg').innerHTML = '';
-  try { await login($('#tok').value); } catch (e) { token=''; sessionStorage.removeItem('jc_token'); $('#loginMsg').innerHTML = `<div class="msg err">${esc(e.message)}</div>`; }
+  const b = $('#loginBtn'), box = $('#loginMsg'); b.disabled = true; box.innerHTML = '';
+  const say = html => box.insertAdjacentHTML('beforeend', `<div class="msg ok" style="margin:.3rem 0">${html}</div>`);
+  try { await login($('#tok').value, say); }
+  catch (e) { box.insertAdjacentHTML('beforeend', loginError(e)); token = ''; sessionStorage.removeItem('jc_token'); }
   b.disabled = false;
 };
 $('#tok').addEventListener('keydown', e => { if (e.key === 'Enter') $('#loginBtn').click(); });
 $('#logout').onclick = () => { sessionStorage.removeItem('jc_token'); location.reload(); };
 window.addEventListener('beforeunload', e => { if (Object.values(dirty).some(Boolean)) { e.preventDefault(); e.returnValue = ''; } });
-if (token) login(token).catch(() => { sessionStorage.removeItem('jc_token'); });
+if (token) login(token).catch(e => { $('#loginMsg').innerHTML = loginError(e); sessionStorage.removeItem('jc_token'); token=''; });
 
 /* ---------- navigation ---------- */
 $('#tabs').onclick = e => { const b = e.target.closest('button'); if (b) show(b.dataset.tab); };
 function show(k) {
   tab = k; notify('');
   document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === k));
+  refreshTabs();
   ({ years:viewYears, events:viewEvents, gallery:() => viewImages('gallery'), learn:() => viewImages('learn'), admins:viewAdmins })[k]();
 }
 const saveBar = (key, label) => `<div class="bar"><h2 style="margin:0">${label}</h2><button class="primary" data-act="save" data-key="${key}">💾 Save &amp; publish</button></div>
@@ -142,13 +196,13 @@ const saveBar = (key, label) => `<div class="bar"><h2 style="margin:0">${label}<
 document.addEventListener('input', e => {
   const p = e.target.dataset.p; if (!p) return;
   let v = e.target.type === 'checkbox' ? e.target.checked : e.target.type === 'number' ? Number(e.target.value) : e.target.value;
-  setP(p, v); dirty[fileKeyOf(p)] = true;
+  setP(p, v); dirty[fileKeyOf(p)] = true; refreshTabs();
 });
 document.addEventListener('click', async e => {
   const b = e.target.closest('[data-act]'); if (!b) return;
   const a = b.dataset.act, path = b.dataset.path, i = +b.dataset.i;
   const arr = path ? getP(path) : null;
-  if (path) dirty[fileKeyOf(path)] = true;
+  if (path) { dirty[fileKeyOf(path)] = true; refreshTabs(); }
   if (a === 'up' && i > 0) [arr[i-1], arr[i]] = [arr[i], arr[i-1]];
   else if (a === 'down' && i < arr.length-1) [arr[i+1], arr[i]] = [arr[i], arr[i+1]];
   else if (a === 'del') { if (!confirm('Remove this item?')) return; arr.splice(i, 1); }
@@ -156,6 +210,7 @@ document.addEventListener('click', async e => {
   else if (a === 'add') arr.push(JSON.parse(b.dataset.tpl));
   else if (a === 'pick') return pickImage(src => { setP(b.dataset.p, src); dirty[fileKeyOf(b.dataset.p)] = true; show(tab); });
   else if (a === 'addYear') return addYear();
+  else if (a === 'clearPast') { const d0 = new Date(), t = `${d0.getFullYear()}-${String(d0.getMonth()+1).padStart(2,'0')}-${String(d0.getDate()).padStart(2,'0')}`; if (!confirm('Remove all events dated before today? (They are already hidden from the site.)')) return; state.events.events = state.events.events.filter(e => e.date >= t); dirty.events = true; refreshTabs(); }
   else if (a === 'delYear') { if (!confirm('Delete this whole year and its entries?')) return; state.years.years.splice(yearIdx, 1); yearIdx = 0; dirty.years = true; }
   else if (a === 'upload') return $('#file-' + b.dataset.sec).click();
   show(tab);
@@ -163,7 +218,7 @@ document.addEventListener('click', async e => {
 async function doSave(b) {
   const key = b.dataset.key; b.disabled = true;
   try { await saveFile(key, `Admin (${me}): update ${key}`); notify('✅ Saved. The site will refresh in about a minute.', 'ok'); }
-  catch (e) { notify('❌ ' + esc(e.message), 'err'); }
+  catch (e) { notify('❌ ' + (e.network ? 'Network problem – nothing was saved. Check your connection and try again.' : e.status === 409 || e.status === 422 ? 'Someone else changed this file on GitHub since you opened it. <b>Reload this page</b> and re-apply your edit (nothing was overwritten).' : e.status === 403 || e.status === 404 ? 'GitHub refused the save – the token needs write access (Contents: Read and write, or classic public_repo). ' + esc(e.ghMessage || '') : esc(e.message)), 'err'); }
   b.disabled = false;
 }
 
@@ -225,7 +280,7 @@ function viewYears() {
   const y = ys[yearIdx], P = `years.years.${yearIdx}`;
   $('#panel').innerHTML = saveBar('years', 'Our Years') +
   `<div class="card"><div class="row"><div><label>Year</label><select id="yearSel">${ys.map((v,i) => `<option value="${i}" ${i===yearIdx?'selected':''}>${esc(v.year)}</option>`).join('')}</select></div>
-     <button data-act="addYear">＋ New year</button><button class="danger" data-act="delYear">Delete year</button></div></div>` +
+     <button data-act="addYear">＋ New year</button>${y ? `<a href="../year.html?y=${encodeURIComponent(y.year)}" target="_blank" rel="noopener" style="align-self:center;flex:0 0 auto">View page ↗</a>` : ''}<button class="danger" data-act="delYear">Delete year</button></div></div>` +
   (!y ? '<p class="hint">No years yet – add one.</p>' : `
   <div class="card"><label>Year label</label><input data-p="${P}.year" value="${esc(y.year)}" />
     <label>Subtitle (shown after the year)</label><input data-p="${P}.title" value="${esc(y.title)}" placeholder="e.g. Highlights" />
@@ -247,7 +302,7 @@ function viewEvents() {
   const ev = state.events.events, d0 = new Date(), today = `${d0.getFullYear()}-${String(d0.getMonth()+1).padStart(2,'0')}-${String(d0.getDate()).padStart(2,'0')}`;
   $('#panel').innerHTML = saveBar('events', 'Upcoming events') +
   `<p class="hint">Events disappear from the site automatically the day after their date.</p>
-   <button data-act="add" data-path="events.events" data-tpl='${esc(JSON.stringify({title:'',date:today,time:'',location:'',description:'',link:''}))}'>＋ Add event</button><br><br>` +
+   <button data-act="add" data-path="events.events" data-tpl='${esc(JSON.stringify({title:'',date:today,time:'',location:'',description:'',link:''}))}'>＋ Add event</button> ${ev.some(e => e.date < today) ? '<button class="danger" data-act="clearPast">Remove past events</button>' : ''}<br><br>` +
   ev.map((e,i) => `<div class="card ${e.date < today ? 'past' : ''}"><div class="row"><div style="flex:2 1 220px"><label>Title</label><input data-p="events.events.${i}.title" value="${esc(e.title)}" /></div>
     <div><label>Date</label><input type="date" data-p="events.events.${i}.date" value="${esc(e.date)}" /></div><div><label>Time</label><input type="time" data-p="events.events.${i}.time" value="${esc(e.time)}" /></div></div>
     <label>Location</label><input data-p="events.events.${i}.location" value="${esc(e.location)}" />
